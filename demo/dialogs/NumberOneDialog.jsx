@@ -1,3 +1,4 @@
+import { NavigateStackContext } from '../../src'
 import { CloseStackContext } from '../../src'
 import React from 'react'
 
@@ -5,16 +6,23 @@ class NumberOneDialog extends React.Component {
 
   render() {
     return(
-      <CloseStackContext.Consumer>
-        {close => (
-          <div>
-            <h1>I am Dialog Number 1</h1>
-            <button onClick={close}>
-              Close
-            </button>
-          </div>
+      <NavigateStackContext.Consumer>
+        {navigate => (
+          <CloseStackContext.Consumer>
+            {close => (
+              <div className='DialogNumber1'>
+                <h1>I am Dialog Number 1</h1>
+                <button onClick={close}>
+                  Close
+                </button>
+                <button onClick={()=>navigate('NumberTwo')}>
+                  Next
+                </button>
+              </div>
+            )}
+          </CloseStackContext.Consumer>
         )}
-      </CloseStackContext.Consumer>
+      </NavigateStackContext.Consumer>
     )
   }
 }

@@ -35,6 +35,24 @@ class ReactDialogStack extends React.Component {
     });
   }
 
+  unstack() {
+    if(this.state.stack.length <= 1) { return }
+
+    let newStack = [...this.state.stack];
+    newStack.pop();
+    
+    this.setState({
+      animating: true,
+      direction: 'backward',
+      animation: setTimeout(function(){
+        this.setState({
+          stack: newStack,
+          animating: false
+        });
+      }.bind(this), this.state.animationSpeed)
+    });
+  }
+
   classForState(index){
     if(this.state.animating) { return }
     if(this.state.stack.length === 1) {
@@ -119,6 +137,7 @@ class ReactDialogStack extends React.Component {
   }
 
   close() {
+    this.setState({stack: this.state.stack.slice(0,1)})
     this.props.close()
   }
 

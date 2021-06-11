@@ -1,6 +1,8 @@
 import React from 'react'
 import { ReactDialogStack } from '../../src'
 import NumberOneDialog from '../dialogs/NumberOneDialog'
+import NumberTwoDialog from '../dialogs/NumberTwoDialog'
+import NumberThreeDialog from '../dialogs/NumberThreeDialog'
 
 class DemoStack extends React.Component {
 
@@ -12,8 +14,10 @@ class DemoStack extends React.Component {
         open={this.props.open}
         close={this.props.close}
         dialogs={{
-          NumberOne: <NumberOneDialog/>
-        }}        
+          NumberOne: <NumberOneDialog/>,
+          NumberTwo: <NumberTwoDialog/>,
+          NumberThree: <NumberThreeDialog/>
+        }}
       />
     )
   }

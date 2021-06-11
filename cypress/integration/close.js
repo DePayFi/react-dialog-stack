@@ -71,4 +71,30 @@ describe('close ReactDialogStack', () => {
       })
     })
   })
+
+  it('resets navigation stack when stack closes and starts over again', () => {
+    cy.visit('cypress/test.html').then((contentWindow) => {
+      cy.document().then((document) => {
+
+        let updateStack = function(open){
+          ReactDOM.render(
+            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) }),
+            document.getElementById('app')
+          );
+        }
+
+        updateStack(true);
+
+        cy.contains('button', 'Next').click()
+        cy.contains('h1', 'I am Dialog Number 2').should('exist')
+        cy.get('.DialogNumber2').contains('button', 'Next').click()
+        cy.contains('h1', 'I am Dialog Number 3').should('exist')
+        cy.get('.DialogNumber3').contains('button', 'Close').click()
+        
+        updateStack(true);
+        
+        cy.contains('h1', 'I am Dialog Number 1').should('exist')
+      })
+    })
+  })
 })

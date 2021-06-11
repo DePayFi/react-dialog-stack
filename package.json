@@ -31,7 +31,7 @@
   "homepage": "https://github.com/DePayFi/depay-react-dialog-stack#readme",
   "private": false,
   "dependencies": {
-    "depay-react-dialog": "^9.0.0",
+    "depay-react-dialog": "^9.0.1",
     "react-dom": "^17.0.1"
   },
   "peerDependencies": {

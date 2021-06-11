@@ -152,6 +152,7 @@
 
 	function ReactDialogStackStyle(){
 	  return(`
+
     .ReactDialogStack {
       bottom: 0;
       display: table;
@@ -653,9 +654,10 @@
 	    `
     .ReactDialog {
       bottom: 0;
-      display: table;
+      display: table-row-group;
       height: 100%;
       left: 0;
+      overflow: hidden;
       position: absolute;
       right: 0;
       top: 0;
@@ -851,6 +853,24 @@
 	    });
 	  }
 
+	  unstack() {
+	    if(this.state.stack.length <= 1) { return }
+
+	    let newStack = [...this.state.stack];
+	    newStack.pop();
+	    
+	    this.setState({
+	      animating: true,
+	      direction: 'backward',
+	      animation: setTimeout(function(){
+	        this.setState({
+	          stack: newStack,
+	          animating: false
+	        });
+	      }.bind(this), this.state.animationSpeed)
+	    });
+	  }
+
 	  classForState(index){
 	    if(this.state.animating) { return }
 	    if(this.state.stack.length === 1) {
@@ -903,12 +923,12 @@
 	        this.classForDirection()
 	      ];
 	      return(
-	        react.createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 90}}
-	          , react.createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 91}}
-	            , react.createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 92}}
-	              , react.createElement(NavigateStackContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 93}}
-	                , react.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 94}}
-	                  , react.createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 95}}
+	        react.createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 108}}
+	          , react.createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 109}}
+	            , react.createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 110}}
+	              , react.createElement(NavigateStackContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 111}}
+	                , react.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 112}}
+	                  , react.createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 113}}
 	                    ,  this.props.dialogs[route] 
 	                  )
 	                )
@@ -935,13 +955,14 @@
 	  }
 
 	  close() {
+	    this.setState({stack: this.state.stack.slice(0,1)});
 	    this.props.close();
 	  }
 
 	  render() {
 	    return(
-	      react.createElement(ReactDialog_1, { close: this.close.bind(this), open: this.props.open, document: this.props.document, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 127}}
-	        , react.createElement('style', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 128}}, ReactDialogStackStyle())
+	      react.createElement(ReactDialog_1, { close: this.close.bind(this), open: this.props.open, document: this.props.document, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 146}}
+	        , react.createElement('style', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 147}}, ReactDialogStackStyle())
 	        ,  this.renderStack() 
 	      )
 	    )
@@ -953,11 +974,41 @@
 
 	  render() {
 	    return(
-	      react.createElement(CloseStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 8}}
-	        , close => (
-	          react.createElement('div', {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 10}}
-	            , react.createElement('h1', {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 11}}, "I am Dialog Number 1"    )
-	            , react.createElement('button', { onClick: close, __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 12}}, "Close"
+	      react.createElement(NavigateStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 9}}
+	        , navigate => (
+	          react.createElement(CloseStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 11}}
+	            , close => (
+	              react.createElement('div', { className: "DialogNumber1", __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 13}}
+	                , react.createElement('h1', {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 14}}, "I am Dialog Number 1"    )
+	                , react.createElement('button', { onClick: close, __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 15}}, "Close"
+
+	                )
+	                , react.createElement('button', { onClick: ()=>navigate('NumberTwo'), __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 18}}, "Next"
+
+	                )
+	              )
+	            )
+	          )
+	        )
+	      )
+	    )
+	  }
+	}
+
+	const _jsxFileName$4 = "/Users/sebastian/Work/DePay/depay-react-dialog-stack/demo/dialogs/NumberTwoDialog.jsx";
+
+	class NumberTwoDialog extends react.Component {
+
+	  render() {
+	    return(
+	      react.createElement(NavigateStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$4, lineNumber: 9}}
+	        , navigate => (
+	          react.createElement('div', { className: "DialogNumber2", __self: this, __source: {fileName: _jsxFileName$4, lineNumber: 11}}
+	            , react.createElement('h1', {__self: this, __source: {fileName: _jsxFileName$4, lineNumber: 12}}, "I am Dialog Number 2"    )
+	            , react.createElement('button', { onClick: ()=>navigate('back'), __self: this, __source: {fileName: _jsxFileName$4, lineNumber: 13}}, "Back"
+
+	            )
+	            , react.createElement('button', { onClick: ()=>navigate('NumberThree'), __self: this, __source: {fileName: _jsxFileName$4, lineNumber: 16}}, "Next"
 
 	            )
 	          )
@@ -967,7 +1018,33 @@
 	  }
 	}
 
-	const _jsxFileName$4 = "/Users/sebastian/Work/DePay/depay-react-dialog-stack/demo/src/index.jsx";
+	const _jsxFileName$5 = "/Users/sebastian/Work/DePay/depay-react-dialog-stack/demo/dialogs/NumberThreeDialog.jsx";
+	class NumberThreeDialog extends react.Component {
+
+	  render() {
+	    return(
+	      react.createElement(CloseStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 9}}
+	        , close => (
+	          react.createElement(NavigateStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 11}}
+	            , navigate => (
+	              react.createElement('div', { className: "DialogNumber3", __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 13}}
+	                , react.createElement('h1', {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 14}}, "I am Dialog Number 3"    )
+	                , react.createElement('button', { onClick: ()=>navigate('back'), __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 15}}, "Back"
+
+	                )
+	                , react.createElement('button', { onClick: close, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 18}}, "Close"
+
+	                )
+	              )
+	            )
+	          )
+	        )
+	      )
+	    )
+	  }
+	}
+
+	const _jsxFileName$6 = "/Users/sebastian/Work/DePay/depay-react-dialog-stack/demo/src/index.jsx";
 	class DemoStack extends react.Component {
 
 	  render() {
@@ -978,8 +1055,10 @@
 	        open: this.props.open,
 	        close: this.props.close,
 	        dialogs: {
-	          NumberOne: react.createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$4, lineNumber: 15}})
-	        }, __self: this, __source: {fileName: _jsxFileName$4, lineNumber: 9}}        
+	          NumberOne: react.createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 17}}),
+	          NumberTwo: react.createElement(NumberTwoDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 18}}),
+	          NumberThree: react.createElement(NumberThreeDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 19}})
+	        }, __self: this, __source: {fileName: _jsxFileName$6, lineNumber: 11}}
 	      )
 	    )
 	  }

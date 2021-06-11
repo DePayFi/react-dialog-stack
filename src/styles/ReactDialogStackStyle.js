@@ -1,5 +1,6 @@
 export default function(){
   return(`
+
     .ReactDialogStack {
       bottom: 0;
       display: table;
