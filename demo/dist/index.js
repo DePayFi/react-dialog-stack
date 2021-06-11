@@ -146,7 +146,66 @@
 	}
 	});
 
-	var NavigationContext = react.createContext();
+	var CloseStackContext = react.createContext();
+
+	var NavigateStackContext = react.createContext();
+
+	function ReactDialogStackStyle(){
+	  return(`
+    .ReactDialogStack {
+      bottom: 0;
+      display: table;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      transition: left 0.1s ease, opacity 0.2s ease;
+      width: 100%;
+    }
+
+    .ReactDialogStackRow {
+      display: table-row;
+    }
+
+    .ReactDialogStackCell {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0 0.6rem;
+    }
+
+    .ReactDialogStack {
+      left: 0;
+      opacity: 1;
+    }
+
+    .ReactDialogStack.inactive {
+      display: none;
+    }
+
+    .ReactDialogStack.animating.stale {
+      display: none;
+    }
+
+    .ReactDialogStack.animating.previous.forward {
+      opacity: 0;
+      left: -5rem;
+    }
+
+    .ReactDialogStack.animating.previous.backward {
+      opacity: 0;
+      left: 5rem;
+    }
+
+    .ReactDialogStack.animating.next.forward {
+      opacity: 0;
+      left: 5rem;
+    }
+
+    .ReactDialogStack.animating.next.backward {
+      opacity: 0;
+      left: -5rem;
+    }
+  `)
+	}
 
 	/** @license React v0.20.1
 	 * scheduler.production.min.js
@@ -586,26 +645,36 @@
 	var React__default = /*#__PURE__*/_interopDefaultLegacy$1(react);
 	var ReactDOM__default = /*#__PURE__*/_interopDefaultLegacy$1(reactDom);
 
-	const _jsxFileName = "/Users/sebastian/Work/DePay/depay-react-dialog/src/components/Dialog.jsx";
-
-
-	const renderStyle = function (styles) {
+	function ReactDialogStyle (styles) {
 	  let background =
 	    typeof styles === 'object' && styles.background ? styles.background : 'rgba(0,0,0,0.4)';
 
 	  return (
 	    `
     .ReactDialog {
-      align-items: center;
       bottom: 0;
-      display: flex;
-      height: 100vh;
-      justify-content: center;
+      display: table;
+      height: 100%;
       left: 0;
       position: absolute;
       right: 0;
       top: 0;
-      width: 100vw;
+      user-select: none;
+      width: 100%;
+    }
+
+    .ReactDialogRow {
+      display: table-row;
+      height: 100%;
+      width: 100%;
+    }
+
+    .ReactDialogCell {
+      display: table-cell;
+      height: 100%;
+      vertical-align: middle;
+      width: 100%;
+      text-align: center;
     }
 
     .ReactDialogBackground {
@@ -629,6 +698,7 @@
     }
 
     .ReactDialogInner {
+      display: inline-block;
       opacity: 0;
       position: relative;
       top: -17vh;
@@ -641,7 +711,10 @@
     }
   `
 	  )
-	};
+	}
+
+	const _jsxFileName = "/Users/sebastian/Work/DePay/depay-react-dialog/src/components/Dialog.jsx";
+
 
 	class Dialog extends React__default['default'].Component {
 	  constructor(props) {
@@ -689,12 +762,16 @@
 
 	  render() {
 	    const classNames = ['ReactDialog', this.state.open ? 'ReactDialogOpen' : ''];
-	    const style = renderStyle({ background: this.props.background });
+	    const style = ReactDialogStyle({ background: this.props.background });
 	    return (
-	      React__default['default'].createElement('div', { className: classNames.join(' '), __self: this, __source: {fileName: _jsxFileName, lineNumber: 107}}
-	        , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 108}}, style)
-	        , React__default['default'].createElement('div', { className: "ReactDialogBackground", onClick: this.onClickBackground.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 109}} )
-	        , React__default['default'].createElement('div', { className: "ReactDialogInner", __self: this, __source: {fileName: _jsxFileName, lineNumber: 110}}, this.props.children)
+	      React__default['default'].createElement('div', { className: classNames.join(' '), __self: this, __source: {fileName: _jsxFileName, lineNumber: 54}}
+	        , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 55}}, style)
+	        , React__default['default'].createElement('div', { className: "ReactDialogRow", __self: this, __source: {fileName: _jsxFileName, lineNumber: 56}}
+	          , React__default['default'].createElement('div', { className: "ReactDialogCell", __self: this, __source: {fileName: _jsxFileName, lineNumber: 57}}
+	            , React__default['default'].createElement('div', { className: "ReactDialogBackground", onClick: this.onClickBackground.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 58}} )
+	            , React__default['default'].createElement('div', { className: "ReactDialogInner", __self: this, __source: {fileName: _jsxFileName, lineNumber: 59}}, this.props.children)
+	          )
+	        )
 	      )
 	    )
 	  }
@@ -755,7 +832,6 @@
 	      animation: null,
 	      direction: 'forward',
 	      animationSpeed: 200,
-	      open: true
 	    };
 	  }
 
@@ -827,11 +903,13 @@
 	        this.classForDirection()
 	      ];
 	      return(
-	        react.createElement('div', { key: index, className: ['StackedDialog'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 89}}
-	          , react.createElement('div', { className: "StackedDialogRow", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 90}}
-	            , react.createElement('div', { className: "StackedDialogCell", onClick: (event)=> this.onClickBackground(event, closeContainer), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 91}}
-	              , react.createElement(NavigationContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 92}}
-	                ,  this.props.dialogs[route] 
+	        react.createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 90}}
+	          , react.createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 91}}
+	            , react.createElement('div', { className: "ReactDialogStackCell", onClick: (event)=> this.onClick(event, close), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 92}}
+	              , react.createElement(NavigateStackContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 93}}
+	                , react.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 94}}
+	                  ,  this.props.dialogs[route] 
+	                )
 	              )
 	            )
 	          )
@@ -840,9 +918,31 @@
 	    }.bind(this));
 	  }
 
+	  onClick(event, closeContainer) {
+	    console.log('CLICK', event);
+	    if(
+	      event.target instanceof HTMLElement &&
+	      event.target.className.match('ReactDialogStackCell')
+	    ) {
+	      console.log('CLICK ReactDialogStackCell');
+	      // if stack background clicked
+	      if(this.state.stack.length > 1) {
+	        this.unstack();
+	      } else {
+	        closeContainer();
+	      }
+	      this.close();
+	    }
+	  }
+
+	  close() {
+	    this.props.close();
+	  }
+
 	  render() {
 	    return(
-	      react.createElement(ReactDialog_1, { close: this.close, open: this.state.open, document: this.props.document, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 104}}
+	      react.createElement(ReactDialog_1, { close: this.close.bind(this), open: this.props.open, document: this.props.document, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 128}}
+	        , react.createElement('style', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 129}}, ReactDialogStackStyle())
 	        ,  this.renderStack() 
 	      )
 	    )
@@ -854,7 +954,16 @@
 
 	  render() {
 	    return(
-	      react.createElement('h1', {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 7}}, "I am Dialog Number 1"    )
+	      react.createElement(CloseStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 8}}
+	        , close => (
+	          react.createElement('div', {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 10}}
+	            , react.createElement('h1', {__self: this, __source: {fileName: _jsxFileName$3, lineNumber: 11}}, "I am Dialog Number 1"    )
+	            , react.createElement('button', { onClick: close, __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 12}}, "Close"
+
+	            )
+	          )
+	        )
+	      )
 	    )
 	  }
 	}
@@ -867,8 +976,10 @@
 	      react.createElement(ReactDialogStack, {
 	        document:  this.props.document ,
 	        start: "NumberOne",
+	        open: this.props.open,
+	        close: this.props.close,
 	        dialogs: {
-	          NumberOne: react.createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$4, lineNumber: 13}})
+	          NumberOne: react.createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$4, lineNumber: 15}})
 	        }, __self: this, __source: {fileName: _jsxFileName$4, lineNumber: 9}}        
 	      )
 	    )

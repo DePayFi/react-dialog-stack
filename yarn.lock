@@ -2199,10 +2199,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-depay-react-dialog@^6.1.2:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/depay-react-dialog/-/depay-react-dialog-6.1.2.tgz#853e68122f7a4c7f7408673465a26649744aacfa"
-  integrity sha512-3XqUzSQAmIf5sv/H80IKUI3WAUxwbZtVlLahzTohGx5gBkAul7US1DzgfT0xrHGrK+e6SUIWlqE3iXLbwhHyWQ==
+depay-react-dialog@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/depay-react-dialog/-/depay-react-dialog-7.0.0.tgz#8a89978c79cc644c8a5f3c263f93d32b2051bee0"
+  integrity sha512-9B1nJUTFHgegjm/yk9u6NDJlloShYj/WdlSat9Qbt3MQcekeJDv/M+kUoEuEFXLvnPGJ3StS0ZMogDSWdKBlGQ==
   dependencies:
     react-dom "^17.0.1"
 

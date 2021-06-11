@@ -31,9 +31,9 @@
       }
     </style>
     <script>
-      var openStack = function() {
+      var updateStack = function(open) {
         ReactDOM.render(
-          React.createElement(window.DemoStack.DemoStack),
+          React.createElement(window.DemoStack.DemoStack, { open: open, close: ()=>updateStack(false)}),
           document.getElementById('dialog')
         );
       }
@@ -41,7 +41,7 @@
   </head>
   <body>
     <div id="app">
-      <button onClick='openStack()'>Open Dialog Stack</button>
+      <button onClick='updateStack(true)'>Open Dialog Stack</button>
     </div>
 
     <div id="dialog"/>

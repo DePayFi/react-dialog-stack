@@ -1,5 +1,7 @@
-import NavigationContext from './contexts/NavigationContext'
+import CloseStackContext from './contexts/CloseStackContext'
+import NavigateStackContext from './contexts/NavigateStackContext'
 import React from 'react'
+import ReactDialogStackStyle from './styles/ReactDialogStackStyle'
 import ReactDOM from 'react-dom'
 import { ReactDialog } from "depay-react-dialog"
 
@@ -14,7 +16,6 @@ class ReactDialogStack extends React.Component {
       animation: null,
       direction: 'forward',
       animationSpeed: 200,
-      open: true
     }
   }
 
@@ -86,12 +87,14 @@ class ReactDialogStack extends React.Component {
         this.classForDirection()
       ];
       return(
-        <div key={index} className={['StackedDialog'].concat(stackState).join(' ')}>
-          <div className='StackedDialogRow'>
-            <div className='StackedDialogCell' onClick={(event)=> this.onClickBackground(event, closeContainer)}>
-              <NavigationContext.Provider value={this.navigate.bind(this)}>
-                { this.props.dialogs[route] }
-              </NavigationContext.Provider>
+        <div key={index} className={['ReactDialogStack'].concat(stackState).join(' ')}>
+          <div className='ReactDialogStackRow'>
+            <div className='ReactDialogStackCell' onClick={(event)=> this.onClick(event, close)}>
+              <NavigateStackContext.Provider value={this.navigate.bind(this)}>
+                <CloseStackContext.Provider value={this.close.bind(this)}>
+                  { this.props.dialogs[route] }
+                </CloseStackContext.Provider>
+              </NavigateStackContext.Provider>
             </div>
           </div>
         </div>
@@ -99,13 +102,39 @@ class ReactDialogStack extends React.Component {
     }.bind(this));
   }
 
+  onClick(event, closeContainer) {
+    console.log('CLICK', event);
+    if(
+      event.target instanceof HTMLElement &&
+      event.target.className.match('ReactDialogStackCell')
+    ) {
+      console.log('CLICK ReactDialogStackCell');
+      // if stack background clicked
+      if(this.state.stack.length > 1) {
+        this.unstack();
+      } else {
+        closeContainer();
+      }
+      this.close();
+    }
+  }
+
+  close() {
+    this.props.close()
+  }
+
   render() {
     return(
-      <ReactDialog close={this.close} open={this.state.open} document={this.props.document}>
+      <ReactDialog close={this.close.bind(this)} open={this.props.open} document={this.props.document}>
+        <style>{ReactDialogStackStyle()}</style>
         { this.renderStack() }
       </ReactDialog>
     )
   }
 }
 
-export { ReactDialogStack }
+export {
+  ReactDialogStack,
+  CloseStackContext,
+  NavigateStackContext
+}

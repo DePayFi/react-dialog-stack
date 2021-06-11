@@ -9,6 +9,8 @@ class DemoStack extends React.Component {
       <ReactDialogStack
         document={ this.props.document }
         start='NumberOne'
+        open={this.props.open}
+        close={this.props.close}
         dialogs={{
           NumberOne: <NumberOneDialog/>
         }}        

@@ -10,7 +10,7 @@ describe('render ReactDialogStack', () => {
       cy.document().then((document) => {
 
         ReactDOM.render(
-          React.createElement(DemoStack, { document: document }),
+          React.createElement(DemoStack, { document: document, open: true }),
           document.getElementById('app')
         );
 

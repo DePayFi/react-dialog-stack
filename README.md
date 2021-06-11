@@ -13,8 +13,25 @@ npm install --save depay-react-dialog-stack
 ```javascript
 import { ReactDialogStack } from 'depay-react-dialog-stack'
 
-  <ReactDialogStack
-  />
+  closeDialogStack() {
+    this.setState({openDialogStack: false});
+  }
+
+render() {
+  return(
+    <ReactDialogStack
+      open={this.state.openDialogStack}
+      close={this.closeDialogStack}
+      start='StartDialog'
+      dialogs={{
+        StartDialog: <StartDialog/>,
+        SecondDialog: <SecondDialog/>,
+        ThirdDialog: <ThirdDialog/>
+      }}
+    />
+  )
+}
+
 ```
 
 ## Functionalities
@@ -22,22 +39,27 @@ import { ReactDialogStack } from 'depay-react-dialog-stack'
 ### Render
 
 ```javascript
-import { ReactDialog } from 'depay-react-dialog'
+import { ReactDialogStack } from 'depay-react-dialog-stack'
 
 render() {
   return(
-    ...
-    <ReactDialog close={this.close} open={this.state.showDialog}>
-      <h1>I am a dialog</h1>
-      <button onclick={this.close}>Close Dialog</button>
-    </ReactDialog>
+    <ReactDialogStack
+      open={this.state.openDialogStack}
+      close={this.closeDialogStack}
+      start='StartDialog'
+      dialogs={{
+        StartDialog: <StartDialog/>,
+        SecondDialog: <SecondDialog/>,
+        ThirdDialog: <ThirdDialog/>
+      }}
+    />
   )
 }
 ```
 
 #### Props
 
-`close (function)`: A function living in the dialog parent that is called from the ReactDialog on a close attempt. The parent has to take care if a dialog is closable, and needs to set it's own state accordingly.
+`close (function)`: A function living in the dialog stack parent that is called from the ReactDialogStack on a close attempt. The parent has to take care if a dialog is closable, and needs to set it's own state accordingly.
 
 ```javascript
   close() {
@@ -48,28 +70,52 @@ render() {
 
   /*...*/
 
-  <ReactDialog close={this.close} open={this.state.showDialog}>
-    <h1>I am a dialog</h1>
-    <button onclick={this.close}>Close Dialog</button>
-  </ReactDialog>
-```
-
-`background (string)`: Background passed as CSS to the `ReactDialogBackground`.
-
-```javascript
-  <ReactDialog background={'rgba(255,255,255,0.6)'} close={this.close} open={this.state.showDialog}>
-    <h1>I am a dialog with white background.</h1>
-  </ReactDialog>
+  <ReactDialogStack
+    close={this.close}
+    open={this.state.showDialog}
+  />
 ```
 
 `document (Document)`: Allows to forward a different document where the dialog is supposed to live in (created through ReactDOM portal).
 
 ```javascript
 
-  <ReactDialog document={someIframe.document}>
-    <h1>I am a dialog</h1>
-    <button onclick={this.close}>Close Dialog</button>
-  </ReactDialog>
+  <ReactDialogStack 
+    document={someIframe.document}
+  />
+```
+
+`background (string)`: Background passed as CSS to the `ReactDialog`.
+
+```javascript
+  <ReactDialogStack
+    background={'rgba(255,255,255,0.6)'}
+  />
+```
+
+### Contexts
+
+Contexts can be used in dialogs passed to `ReactDialogStack` in order to communicate with the stack manager.
+
+#### CloseStackContext
+
+```javascript
+import { CloseStackContext } from 'depay-react-dialog-stack'
+
+render() {
+  return(
+    <CloseStackContext.Consumer>
+      {close => (
+        <div>
+          <h1>I am the start dialog</h1>
+          <button onClick={close}>
+            Close Stack
+          </button>
+        </div>
+      )}
+    </CloseStackContext.Consumer>
+  )
+}
 ```
 
 ## Development
