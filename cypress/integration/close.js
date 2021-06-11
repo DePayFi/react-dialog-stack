@@ -50,7 +50,7 @@ describe('close ReactDialogStack', () => {
     })
   })
 
-  it.only('closes the stack if clicking on the stack background', () => {
+  it('closes the stack if clicking on the stack background', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
@@ -65,7 +65,7 @@ describe('close ReactDialogStack', () => {
 
         cy.get('h1').should('exist')
 
-        cy.get('.ReactDialogStackCell').click()
+        cy.get('.ReactDialogStackCell').click(1, 1)
 
         cy.get('h1').should('not.exist')
       })

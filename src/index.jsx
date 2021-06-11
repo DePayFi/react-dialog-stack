@@ -89,10 +89,12 @@ class ReactDialogStack extends React.Component {
       return(
         <div key={index} className={['ReactDialogStack'].concat(stackState).join(' ')}>
           <div className='ReactDialogStackRow'>
-            <div className='ReactDialogStackCell' onClick={(event)=> this.onClick(event, close)}>
+            <div className='ReactDialogStackCell' onClick={this.onClick.bind(this)}>
               <NavigateStackContext.Provider value={this.navigate.bind(this)}>
                 <CloseStackContext.Provider value={this.close.bind(this)}>
-                  { this.props.dialogs[route] }
+                  <div className='ReactDialogAnimation'>
+                    { this.props.dialogs[route] }
+                  </div>
                 </CloseStackContext.Provider>
               </NavigateStackContext.Provider>
             </div>
@@ -102,20 +104,17 @@ class ReactDialogStack extends React.Component {
     }.bind(this));
   }
 
-  onClick(event, closeContainer) {
-    console.log('CLICK', event);
+  onClick(event) {
     if(
-      event.target instanceof HTMLElement &&
-      event.target.className.match('ReactDialogStackCell')
+      event.target &&
+      event.target.className &&
+      event.target.className.match('ReactDialogStackCell') // clicked background
     ) {
-      console.log('CLICK ReactDialogStackCell');
-      // if stack background clicked
       if(this.state.stack.length > 1) {
         this.unstack();
       } else {
-        closeContainer();
+        this.close();
       }
-      this.close();
     }
   }
 

@@ -697,15 +697,15 @@
       opacity: 1;
     }
 
-    .ReactDialogInner {
+    .ReactDialogAnimation {
       display: inline-block;
-      opacity: 0;
       position: relative;
+      opacity: 0;
       top: -17vh;
       transition: opacity 0.4s ease, top 0.4s ease;
     }
 
-    .ReactDialog.ReactDialogOpen .ReactDialogInner {
+    .ReactDialog.ReactDialogOpen .ReactDialogAnimation {
       opacity: 1.0;
       top: -5vh;
     }
@@ -769,7 +769,7 @@
 	        , React__default['default'].createElement('div', { className: "ReactDialogRow", __self: this, __source: {fileName: _jsxFileName, lineNumber: 56}}
 	          , React__default['default'].createElement('div', { className: "ReactDialogCell", __self: this, __source: {fileName: _jsxFileName, lineNumber: 57}}
 	            , React__default['default'].createElement('div', { className: "ReactDialogBackground", onClick: this.onClickBackground.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 58}} )
-	            , React__default['default'].createElement('div', { className: "ReactDialogInner", __self: this, __source: {fileName: _jsxFileName, lineNumber: 59}}, this.props.children)
+	            , this.props.children
 	          )
 	        )
 	      )
@@ -905,10 +905,12 @@
 	      return(
 	        react.createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 90}}
 	          , react.createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 91}}
-	            , react.createElement('div', { className: "ReactDialogStackCell", onClick: (event)=> this.onClick(event, close), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 92}}
+	            , react.createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 92}}
 	              , react.createElement(NavigateStackContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 93}}
 	                , react.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 94}}
-	                  ,  this.props.dialogs[route] 
+	                  , react.createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 95}}
+	                    ,  this.props.dialogs[route] 
+	                  )
 	                )
 	              )
 	            )
@@ -918,20 +920,17 @@
 	    }.bind(this));
 	  }
 
-	  onClick(event, closeContainer) {
-	    console.log('CLICK', event);
+	  onClick(event) {
 	    if(
-	      event.target instanceof HTMLElement &&
-	      event.target.className.match('ReactDialogStackCell')
+	      event.target &&
+	      event.target.className &&
+	      event.target.className.match('ReactDialogStackCell') // clicked background
 	    ) {
-	      console.log('CLICK ReactDialogStackCell');
-	      // if stack background clicked
 	      if(this.state.stack.length > 1) {
 	        this.unstack();
 	      } else {
-	        closeContainer();
+	        this.close();
 	      }
-	      this.close();
 	    }
 	  }
 
@@ -941,8 +940,8 @@
 
 	  render() {
 	    return(
-	      react.createElement(ReactDialog_1, { close: this.close.bind(this), open: this.props.open, document: this.props.document, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 128}}
-	        , react.createElement('style', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 129}}, ReactDialogStackStyle())
+	      react.createElement(ReactDialog_1, { close: this.close.bind(this), open: this.props.open, document: this.props.document, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 127}}
+	        , react.createElement('style', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 128}}, ReactDialogStackStyle())
 	        ,  this.renderStack() 
 	      )
 	    )
