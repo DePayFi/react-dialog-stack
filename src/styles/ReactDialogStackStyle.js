@@ -1,5 +1,5 @@
-export default function(){
-  return(`
+export default function () {
+  return `
 
     .ReactDialogStack {
       bottom: 0;
@@ -53,5 +53,5 @@ export default function(){
       opacity: 0;
       left: -5rem;
     }
-  `)
+  `
 }
