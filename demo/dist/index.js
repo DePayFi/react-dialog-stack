@@ -150,8 +150,8 @@
 
 	var NavigateStackContext = react.createContext();
 
-	function ReactDialogStackStyle(){
-	  return(`
+	function ReactDialogStackStyle () {
+	  return `
 
     .ReactDialogStack {
       bottom: 0;
@@ -205,7 +205,7 @@
       opacity: 0;
       left: -5rem;
     }
-  `)
+  `
 	}
 
 	/** @license React v0.20.1
@@ -824,7 +824,6 @@
 
 	const _jsxFileName$2 = "/Users/sebastian/Work/DePay/depay-react-dialog-stack/src/index.jsx";
 	class ReactDialogStack extends react.Component {
-
 	  constructor(props) {
 	    super(props);
 
@@ -838,115 +837,129 @@
 	  }
 
 	  navigate(route) {
-	    if(this.state.stack.indexOf(route) > -1) { return }
-	    if(route === 'back') { return this.unstack() }
+	    if (this.state.stack.indexOf(route) > -1) {
+	      return
+	    }
+	    if (route === 'back') {
+	      return this.unstack()
+	    }
 
 	    this.setState({
 	      stack: this.state.stack.concat(route),
 	      animating: true,
 	      direction: 'forward',
-	      animation: setTimeout(function(){
-	        this.setState({
-	          animating: false
-	        });
-	      }.bind(this), this.state.animationSpeed)
+	      animation: setTimeout(
+	        function () {
+	          this.setState({
+	            animating: false,
+	          });
+	        }.bind(this),
+	        this.state.animationSpeed,
+	      ),
 	    });
 	  }
 
 	  unstack() {
-	    if(this.state.stack.length <= 1) { return }
+	    if (this.state.stack.length <= 1) {
+	      return
+	    }
 
 	    let newStack = [...this.state.stack];
 	    newStack.pop();
-	    
+
 	    this.setState({
 	      animating: true,
 	      direction: 'backward',
-	      animation: setTimeout(function(){
-	        this.setState({
-	          stack: newStack,
-	          animating: false
-	        });
-	      }.bind(this), this.state.animationSpeed)
+	      animation: setTimeout(
+	        function () {
+	          this.setState({
+	            stack: newStack,
+	            animating: false,
+	          });
+	        }.bind(this),
+	        this.state.animationSpeed,
+	      ),
 	    });
 	  }
 
-	  classForState(index){
-	    if(this.state.animating) { return }
-	    if(this.state.stack.length === 1) {
-	      return 'active';
+	  classForState(index) {
+	    if (this.state.animating) {
+	      return
+	    }
+	    if (this.state.stack.length === 1) {
+	      return 'active'
 	    } else {
-	      if(this.state.stack.length === index+1) {
-	        return 'active';
+	      if (this.state.stack.length === index + 1) {
+	        return 'active'
 	      } else {
-	        return 'inactive';
+	        return 'inactive'
 	      }
 	    }
 	  }
 
 	  classForPosition(index) {
-	    if(this.state.stack.length > 1) {
-	      if(this.state.stack.length === index+1) {
-	        if(this.state.direction === 'forward') {
-	          return 'next';
+	    if (this.state.stack.length > 1) {
+	      if (this.state.stack.length === index + 1) {
+	        if (this.state.direction === 'forward') {
+	          return 'next'
 	        } else {
-	          return 'previous';
+	          return 'previous'
 	        }
-	      } else if (this.state.stack.length-1 === index+1) {
-	        if(this.state.direction === 'forward') {
-	          return 'previous';
+	      } else if (this.state.stack.length - 1 === index + 1) {
+	        if (this.state.direction === 'forward') {
+	          return 'previous'
 	        } else {
-	          return 'next';
+	          return 'next'
 	        }
 	      } else {
-	        return 'stale';
+	        return 'stale'
 	      }
 	    }
 	  }
 
 	  classForAnimation() {
-	    if(this.state.animating) {
-	      return 'animating';
+	    if (this.state.animating) {
+	      return 'animating'
 	    }
 	  }
 
 	  classForDirection() {
-	    return this.state.direction;
+	    return this.state.direction
 	  }
 
 	  renderStack() {
-	    return this.state.stack.map(function(route, index){
-	      let stackState = [
-	        this.classForState(index),
-	        this.classForPosition(index),
-	        this.classForAnimation(),
-	        this.classForDirection()
-	      ];
-	      return(
-	        react.createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 108}}
-	          , react.createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 109}}
-	            , react.createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 110}}
-	              , react.createElement(NavigateStackContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 111}}
-	                , react.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 112}}
-	                  , react.createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 113}}
-	                    ,  this.props.dialogs[route] 
+	    return this.state.stack.map(
+	      function (route, index) {
+	        let stackState = [
+	          this.classForState(index),
+	          this.classForPosition(index),
+	          this.classForAnimation(),
+	          this.classForDirection(),
+	        ];
+	        return (
+	          react.createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 122}}
+	            , react.createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 123}}
+	              , react.createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 124}}
+	                , react.createElement(NavigateStackContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 125}}
+	                  , react.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 126}}
+	                    , react.createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 127}}, this.props.dialogs[route])
 	                  )
 	                )
 	              )
 	            )
 	          )
 	        )
-	      )
-	    }.bind(this));
+	      }.bind(this),
+	    )
 	  }
 
 	  onClick(event) {
-	    if(
+	    if (
 	      event.target &&
 	      event.target.className &&
 	      event.target.className.match('ReactDialogStackCell') // clicked background
 	    ) {
-	      if(this.state.stack.length > 1) {
+	      if (this.state.stack.length > 1) {
 	        this.unstack();
 	      } else {
 	        this.close();
@@ -955,15 +968,20 @@
 	  }
 
 	  close() {
-	    this.setState({stack: this.state.stack.slice(0,1)});
+	    this.setState({ stack: this.state.stack.slice(0, 1) });
 	    this.props.close();
 	  }
 
 	  render() {
-	    return(
-	      react.createElement(ReactDialog_1, { close: this.close.bind(this), open: this.props.open, document: this.props.document, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 146}}
-	        , react.createElement('style', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 147}}, ReactDialogStackStyle())
-	        ,  this.renderStack() 
+	    return (
+	      react.createElement(ReactDialog_1, {
+	        close: this.close.bind(this),
+	        open: this.props.open,
+	        document: this.props.document,
+	        background: this.props.background, __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 159}}
+	      
+	        , react.createElement('style', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 165}}, ReactDialogStackStyle())
+	        , this.renderStack()
 	      )
 	    )
 	  }
@@ -1054,10 +1072,11 @@
 	        start: "NumberOne",
 	        open: this.props.open,
 	        close: this.props.close,
+	        background: this.props.background,
 	        dialogs: {
-	          NumberOne: react.createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 17}}),
-	          NumberTwo: react.createElement(NumberTwoDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 18}}),
-	          NumberThree: react.createElement(NumberThreeDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 19}})
+	          NumberOne: react.createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 18}}),
+	          NumberTwo: react.createElement(NumberTwoDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 19}}),
+	          NumberThree: react.createElement(NumberThreeDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 20}})
 	        }, __self: this, __source: {fileName: _jsxFileName$6, lineNumber: 11}}
 	      )
 	    )

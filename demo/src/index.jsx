@@ -13,6 +13,7 @@ class DemoStack extends React.Component {
         start='NumberOne'
         open={this.props.open}
         close={this.props.close}
+        background={this.props.background}
         dialogs={{
           NumberOne: <NumberOneDialog/>,
           NumberTwo: <NumberTwoDialog/>,

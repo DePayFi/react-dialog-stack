@@ -99,6 +99,8 @@ Contexts can be used in dialogs passed to `ReactDialogStack` in order to communi
 
 #### CloseStackContext
 
+`CloseStackContext` provides `close` which can be used to close the entire `ReactDialogStack`.
+
 ```javascript
 import { CloseStackContext } from 'depay-react-dialog-stack'
 
@@ -114,6 +116,34 @@ render() {
         </div>
       )}
     </CloseStackContext.Consumer>
+  )
+}
+```
+
+#### NavigateStackContext
+
+`NavigateStackContext` provides `navigate` which can be used to stack/navigate another dialog.
+
+Either pass the dialog name as configured in `ReactDialogStack` prop named `dialogs` or pass `back` to unstack the current dialog. 
+
+```javascript
+import { NavigateStackContext } from 'depay-react-dialog-stack'
+
+render() {
+  return(
+    <NavigateStackContext.Consumer>
+      {navicate => (
+        <div>
+          <h1>I am the start dialog</h1>
+          <button onClick={()=>navigate('DialogName')}>
+            Next Dialog
+          </button>
+          <button onClick={()=>navigate('back')}>
+            Back
+          </button>
+        </div>
+      )}
+    </NavigateStackContext.Consumer>
   )
 }
 ```

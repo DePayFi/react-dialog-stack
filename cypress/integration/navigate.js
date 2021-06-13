@@ -42,7 +42,7 @@ describe('navigate ReactDialogStack', () => {
     })
   })
 
-  it.only('navigates back if click background on stacked dialogs', () => {
+  it('navigates back if click background on stacked dialogs', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
