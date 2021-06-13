@@ -132,7 +132,7 @@ import { NavigateStackContext } from 'depay-react-dialog-stack'
 render() {
   return(
     <NavigateStackContext.Consumer>
-      {navicate => (
+      {navigate => (
         <div>
           <h1>I am the start dialog</h1>
           <button onClick={()=>navigate('DialogName')}>
