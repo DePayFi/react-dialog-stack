@@ -85,6 +85,15 @@ render() {
   />
 ```
 
+`container (HTMLElement)`: Allows to provide an explicit container the dialog stack is rendered into (created through ReactDOM portal).
+
+```javascript
+
+  <ReactDialogStack 
+    container={document.getElementById('app')}
+  />
+```
+
 `background (string)`: Background passed as CSS to the `ReactDialog`.
 
 ```javascript

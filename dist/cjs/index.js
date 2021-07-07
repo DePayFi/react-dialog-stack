@@ -226,9 +226,11 @@ class ReactDialogStack extends React__default['default'].Component {
       React__default['default'].createElement(depayReactDialog.ReactDialog, {
         close: this.close.bind(this),
         open: this.props.open,
-        document: this.props.document, __self: this, __source: {fileName: _jsxFileName, lineNumber: 159}}
+        document: this.props.document,
+        container: this.props.container,
+        background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 159}}
       
-        , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 164}}, ReactDialogStackStyle())
+        , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 166}}, ReactDialogStackStyle())
         , this.renderStack()
       )
     )

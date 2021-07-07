@@ -160,6 +160,7 @@ class ReactDialogStack extends React.Component {
         close={this.close.bind(this)}
         open={this.props.open}
         document={this.props.document}
+        container={this.props.container}
         background={this.props.background}
       >
         <style>{ReactDialogStackStyle()}</style>
