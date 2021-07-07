@@ -139,6 +139,7 @@ class ReactDialogStack extends React.Component {
     if (
       event.target &&
       event.target.className &&
+      event.target.className.match &&
       event.target.className.match('ReactDialogStackCell') // clicked background
     ) {
       if (this.state.stack.length > 1) {

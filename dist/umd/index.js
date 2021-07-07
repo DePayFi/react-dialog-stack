@@ -205,6 +205,7 @@
       if (
         event.target &&
         event.target.className &&
+        event.target.className.match &&
         event.target.className.match('ReactDialogStackCell') // clicked background
       ) {
         if (this.state.stack.length > 1) {
@@ -227,9 +228,9 @@
           open: this.props.open,
           document: this.props.document,
           container: this.props.container,
-          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 159}}
+          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 160}}
         
-          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 166}}, ReactDialogStackStyle())
+          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 167}}, ReactDialogStackStyle())
           , this.renderStack()
         )
       )
