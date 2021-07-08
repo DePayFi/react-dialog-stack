@@ -1,35 +1,27 @@
-import commonjs from '@rollup/plugin-commonjs';
-import pkg from './package.json';
-import replace from '@rollup/plugin-replace';
-import resolve from '@rollup/plugin-node-resolve';
-import sucrase from '@rollup/plugin-sucrase';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs'
+import globals from './rollup.globals'
+import pkg from './package.json'
+import replace from '@rollup/plugin-replace'
+import resolve from '@rollup/plugin-node-resolve'
+import sucrase from '@rollup/plugin-sucrase'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 export default {
   input: 'src/index.jsx',
   output: [
     {
       format: 'cjs',
-      globals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-      },
+      globals: globals,
       file: 'dist/cjs/index.js'
     },
     {
       format: 'es',
-      globals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-      },
+      globals: globals,
       file: 'dist/es/index.js'
     },
     {
       format: 'umd',
-      globals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-      },
+      globals: globals,
       name: pkg.moduleName,
       file: 'dist/umd/index.js'
     },

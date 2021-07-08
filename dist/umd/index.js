@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('depay-react-dialog')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react', 'depay-react-dialog'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactDialogStack = {}, global.React, global.depayReactDialog));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactDialogStack = {}, global.React, global.ReactDialog));
 }(this, (function (exports, React, depayReactDialog) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }

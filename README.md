@@ -163,7 +163,7 @@ render() {
 
 ```
 yarn install
-yarn start
+yarn dev
 ```
 
 ### Release
