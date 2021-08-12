@@ -3,6 +3,7 @@ import NavigateStackContext from './contexts/NavigateStackContext'
 import React from 'react'
 import ReactDialogStackStyle from './styles/ReactDialogStackStyle'
 import ReactDOM from 'react-dom'
+import StackContext from './contexts/StackContext'
 import { ReactDialog } from 'depay-react-dialog'
 
 class ReactDialogStack extends React.Component {
@@ -124,7 +125,9 @@ class ReactDialogStack extends React.Component {
               <div className="ReactDialogStackCell" onClick={this.onClick.bind(this)}>
                 <NavigateStackContext.Provider value={this.navigate.bind(this)}>
                   <CloseStackContext.Provider value={this.close.bind(this)}>
-                    <div className="ReactDialogAnimation">{this.props.dialogs[route]}</div>
+                    <StackContext.Provider value={this.state.stack}>
+                      <div className="ReactDialogAnimation">{this.props.dialogs[route]}</div>
+                    </StackContext.Provider>
                   </CloseStackContext.Provider>
                 </NavigateStackContext.Provider>
               </div>
@@ -171,4 +174,4 @@ class ReactDialogStack extends React.Component {
   }
 }
 
-export { ReactDialogStack, CloseStackContext, NavigateStackContext }
+export { ReactDialogStack, CloseStackContext, NavigateStackContext, StackContext }

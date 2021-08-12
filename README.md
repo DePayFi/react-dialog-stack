@@ -157,6 +157,27 @@ render() {
 }
 ```
 
+#### StackContext
+
+`StackContext` provides `stack` which provides information about the current stack:
+
+```javascript
+import { StackContext } from 'depay-react-dialog-stack'
+
+render() {
+  return(
+    <StackContext.Consumer>
+      {stack => (
+        <div>
+          Current Stack:
+          { stack }
+        </div>
+      )}
+    </StackContext.Consumer>
+  )
+}
+```
+
 ## Development
 
 ### Get started

@@ -1,7 +1,7 @@
 {
   "name": "depay-react-dialog-stack",
   "moduleName": "ReactDialogStack",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "A flexible dialog stack for react widgets.",
   "main": "./dist/cjs/index.js",
   "files": [
@@ -15,8 +15,9 @@
     "format": "prettier src --write",
     "prepublishOnly": "yarn build",
     "dev": "yarn build:demo && rollup -c rollup.dev.config.js -w",
+    "test:units": "npx jest --no-cache",
     "test:integration": "yarn cypress run",
-    "test": "yarn test:integration"
+    "test": "yarn test:units && yarn test:integration"
   },
   "repository": "git@github.com:DePayFi/depay-react-dialog-stack.git",
   "keywords": [
