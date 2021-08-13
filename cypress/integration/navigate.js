@@ -59,4 +59,22 @@ describe('navigate ReactDialogStack', () => {
       })
     })
   })
+
+  it('navigates back if entering ESC', () => {
+    cy.visit('cypress/test.html').then((contentWindow) => {
+      cy.document().then((document) => {
+
+        ReactDOM.render(
+          React.createElement(DemoStack, { document: document, open: true }),
+          document.getElementById('app')
+        );
+
+        cy.get('.DialogNumber1').contains('button', 'Next').click()
+        cy.contains('h1', 'I am Dialog Number 2').should('exist')
+
+        cy.get('body').type('{esc}')
+        cy.contains('h1', 'I am Dialog Number 1').should('exist')
+      })
+    })
+  })
 })

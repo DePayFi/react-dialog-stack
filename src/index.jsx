@@ -154,8 +154,12 @@ class ReactDialogStack extends React.Component {
   }
 
   close() {
-    this.setState({ stack: this.state.stack.slice(0, 1) })
-    this.props.close()
+    if (this.state.stack.length > 1) {
+      this.unstack()
+    } else {
+      this.setState({ stack: this.state.stack.slice(0, 1) })
+      this.props.close()
+    }
   }
 
   render() {

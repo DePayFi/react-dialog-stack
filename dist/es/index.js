@@ -214,8 +214,12 @@ class ReactDialogStack extends React.Component {
   }
 
   close() {
-    this.setState({ stack: this.state.stack.slice(0, 1) });
-    this.props.close();
+    if (this.state.stack.length > 1) {
+      this.unstack();
+    } else {
+      this.setState({ stack: this.state.stack.slice(0, 1) });
+      this.props.close();
+    }
   }
 
   render() {
@@ -225,9 +229,9 @@ class ReactDialogStack extends React.Component {
         open: this.props.open,
         document: this.props.document,
         container: this.props.container,
-        background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 163}}
+        background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 167}}
       
-        , React.createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 170}}, ReactDialogStackStyle())
+        , React.createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 174}}, ReactDialogStackStyle())
         , this.renderStack()
       )
     )
