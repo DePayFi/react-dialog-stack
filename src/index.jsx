@@ -127,7 +127,9 @@ class ReactDialogStack extends React.Component {
           <div key={index} className={['ReactDialogStack'].concat(stackState).join(' ')}>
             <div className="ReactDialogStackRow">
               <div className="ReactDialogStackCell" onClick={this.onClick.bind(this)}>
-                <NavigateStackContext.Provider value={{ navigate: this.navigate.bind(this), set: this.set.bind(this) } }>
+                <NavigateStackContext.Provider
+                  value={{ navigate: this.navigate.bind(this), set: this.set.bind(this) }}
+                >
                   <CloseStackContext.Provider value={this.close.bind(this)}>
                     <StackContext.Provider value={this.state.stack}>
                       <div className="ReactDialogAnimation">{this.props.dialogs[route]}</div>

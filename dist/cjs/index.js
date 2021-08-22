@@ -87,6 +87,10 @@ class ReactDialogStack extends React__default['default'].Component {
     };
   }
 
+  set(stack) {
+    this.setState({ stack });
+  }
+
   navigate(route) {
     if (this.state.stack.indexOf(route) > -1) {
       return
@@ -188,13 +192,15 @@ class ReactDialogStack extends React__default['default'].Component {
           this.classForDirection(),
         ];
         return (
-          React__default['default'].createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName, lineNumber: 123}}
-            , React__default['default'].createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName, lineNumber: 124}}
-              , React__default['default'].createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 125}}
-                , React__default['default'].createElement(NavigateStackContext.Provider, { value: this.navigate.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 126}}
-                  , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 127}}
-                    , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 128}}
-                      , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 129}}, this.props.dialogs[route])
+          React__default['default'].createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName, lineNumber: 127}}
+            , React__default['default'].createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName, lineNumber: 128}}
+              , React__default['default'].createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 129}}
+                , React__default['default'].createElement(NavigateStackContext.Provider, {
+                  value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 130}}
+                
+                  , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 133}}
+                    , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 134}}
+                      , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 135}}, this.props.dialogs[route])
                     )
                   )
                 )
@@ -237,9 +243,9 @@ class ReactDialogStack extends React__default['default'].Component {
         open: this.props.open,
         document: this.props.document,
         container: this.props.container,
-        background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 167}}
+        background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 173}}
       
-        , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 174}}, ReactDialogStackStyle())
+        , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 180}}, ReactDialogStackStyle())
         , this.renderStack()
       )
     )
