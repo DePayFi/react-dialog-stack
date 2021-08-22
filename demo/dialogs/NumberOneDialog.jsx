@@ -7,7 +7,7 @@ class NumberOneDialog extends React.Component {
   render() {
     return(
       <NavigateStackContext.Consumer>
-        {navigate => (
+        {({ navigate, set }) => (
           <CloseStackContext.Consumer>
             {close => (
               <div className='DialogNumber1'>
@@ -17,6 +17,9 @@ class NumberOneDialog extends React.Component {
                 </button>
                 <button onClick={()=>navigate('NumberTwo')}>
                   Next
+                </button>
+                <button onClick={()=>set(['New'])}>
+                  Set
                 </button>
               </div>
             )}

@@ -131,9 +131,9 @@ render() {
 
 #### NavigateStackContext
 
-`NavigateStackContext` provides `navigate` which can be used to stack/navigate another dialog.
+`NavigateStackContext` provides `navigate` which can be used to stack/navigate another dialog and `set` which allows you to set the entire stack (without animation).
 
-Either pass the dialog name as configured in `ReactDialogStack` prop named `dialogs` or pass `back` to unstack the current dialog. 
+Either pass the dialog name as configured in `ReactDialogStack` prop named `dialogs` or pass `back` to `navigate` to unstack the current dialog. 
 
 ```javascript
 import { NavigateStackContext } from 'depay-react-dialog-stack'
@@ -141,13 +141,16 @@ import { NavigateStackContext } from 'depay-react-dialog-stack'
 render() {
   return(
     <NavigateStackContext.Consumer>
-      {navigate => (
+      {({ navigate, set }) => (
         <div>
           <h1>I am the start dialog</h1>
           <button onClick={()=>navigate('DialogName')}>
             Next Dialog
           </button>
           <button onClick={()=>navigate('back')}>
+            Back
+          </button>
+          <button onClick={()=>set(['DialogName'])}>
             Back
           </button>
         </div>
@@ -195,10 +198,10 @@ npm publish
 
 ### Testing
 
-#### Test single file
+#### Test single integration test
 
 ```
-yarn test --spec "cypress/integration/my-spec.js"
+yarn test:cypress:debug --spec 'cypress/integration/navigate.js'
 ```
 
 #### Show interactive Cypress browser

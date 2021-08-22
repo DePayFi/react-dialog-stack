@@ -1,7 +1,7 @@
 {
   "name": "depay-react-dialog-stack",
   "moduleName": "ReactDialogStack",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "A flexible dialog stack for react widgets.",
   "main": "./dist/cjs/index.js",
   "files": [
@@ -16,6 +16,7 @@
     "prepublishOnly": "yarn build",
     "dev": "yarn build:demo && rollup -c rollup.dev.config.js -w",
     "test:units": "npx jest --no-cache",
+    "test:cypress:debug": "yarn cypress run --headed --no-exit",
     "test:integration": "yarn cypress run",
     "test": "yarn test:units && yarn test:integration"
   },

@@ -77,4 +77,20 @@ describe('navigate ReactDialogStack', () => {
       })
     })
   })
+
+  it('allows to set the entire stack to a new dialog', () => {
+  
+    cy.visit('cypress/test.html').then((contentWindow) => {
+      cy.document().then((document) => {
+
+        ReactDOM.render(
+          React.createElement(DemoStack, { document: document, open: true }),
+          document.getElementById('app')
+        );
+
+        cy.contains('button', 'Set').click()
+        cy.contains('h1', 'I am an entirely new Dialog').should('exist')
+      })
+    })
+  })
 })

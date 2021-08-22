@@ -7,7 +7,7 @@ class NumberTwoDialog extends React.Component {
   render() {
     return(
       <NavigateStackContext.Consumer>
-        {navigate => (
+        {({ navigate }) => (
           <div className='DialogNumber2'>
             <h1>I am Dialog Number 2</h1>
             <button onClick={()=>navigate('back')}>
