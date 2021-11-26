@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDialogStackStyle from './styles/ReactDialogStackStyle'
 import ReactDOM from 'react-dom'
 import StackContext from './contexts/StackContext'
-import { ReactDialog } from 'depay-react-dialog'
+import { ReactDialog } from '@depay/react-dialog'
 
 class ReactDialogStack extends React.Component {
   constructor(props) {

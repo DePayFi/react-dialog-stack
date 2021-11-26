@@ -1,5 +1,5 @@
 export default {
   'react': 'React',
   'react-dom': 'ReactDOM',
-  'depay-react-dialog': 'ReactDialog'
+  '@depay/react-dialog': 'ReactDialog'
 }

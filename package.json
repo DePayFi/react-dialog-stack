@@ -1,7 +1,7 @@
 {
-  "name": "depay-react-dialog-stack",
+  "name": "@depay/react-dialog-stack",
   "moduleName": "ReactDialogStack",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "A flexible dialog stack for react widgets.",
   "main": "./dist/cjs/index.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && rollup -c rollup.module.config.js",
-    "build:demo": "rm -rf demo/dist && rollup -c rollup.demo.config.js",
+    "build:demo": "rm -rf tmp && rollup -c rollup.demo.config.js",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
     "format": "prettier src --write",
@@ -20,7 +20,7 @@
     "test:integration": "yarn cypress run",
     "test": "yarn test:units && yarn test:integration"
   },
-  "repository": "git@github.com:DePayFi/depay-react-dialog-stack.git",
+  "repository": "git@github.com:DePayFi/react-dialog-stack.git",
   "keywords": [
     "react",
     "dialog",
@@ -29,12 +29,12 @@
   "author": "depay.fi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DePayFi/depay-react-dialog-stack/issues"
+    "url": "https://github.com/DePayFi/react-dialog-stack/issues"
   },
-  "homepage": "https://github.com/DePayFi/depay-react-dialog-stack#readme",
+  "homepage": "https://github.com/DePayFi/react-dialog-stack#readme",
   "private": false,
   "dependencies": {
-    "depay-react-dialog": "^10.0.1"
+    "@depay/react-dialog": "^11.0.0"
   },
   "peerDependencies": {
     "react": "^17",

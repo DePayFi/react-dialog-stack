@@ -3,7 +3,8 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
-var depayReactDialog = require('depay-react-dialog');
+require('react-dom');
+var reactDialog = require('@depay/react-dialog');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -238,7 +239,7 @@ class ReactDialogStack extends React__default['default'].Component {
 
   render() {
     return (
-      React__default['default'].createElement(depayReactDialog.ReactDialog, {
+      React__default['default'].createElement(reactDialog.ReactDialog, {
         close: this.close.bind(this),
         open: this.props.open,
         document: this.props.document,

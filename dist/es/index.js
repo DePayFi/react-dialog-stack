@@ -1,5 +1,6 @@
 import React from 'react';
-import { ReactDialog } from 'depay-react-dialog';
+import 'react-dom';
+import { ReactDialog } from '@depay/react-dialog';
 
 var CloseStackContext = React.createContext();
 

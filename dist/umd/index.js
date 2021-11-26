@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('depay-react-dialog')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'react', 'depay-react-dialog'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactDialogStack = {}, global.React, global.ReactDialog));
-}(this, (function (exports, React, depayReactDialog) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-dom'), require('@depay/react-dialog')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-dom', '@depay/react-dialog'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactDialogStack = {}, global.React, global.ReactDOM, global.ReactDialog));
+}(this, (function (exports, React, reactDom, reactDialog) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -237,7 +237,7 @@
 
     render() {
       return (
-        React__default['default'].createElement(depayReactDialog.ReactDialog, {
+        React__default['default'].createElement(reactDialog.ReactDialog, {
           close: this.close.bind(this),
           open: this.props.open,
           document: this.props.document,

@@ -9,7 +9,7 @@ export default Object.assign({}, rollup, {
       format: 'umd',
       name: 'DemoStack',
       globals: globals,
-      file: 'demo/dist/index.js'
+      file: 'tmp/index.demo.js'
     },
   ]
 })

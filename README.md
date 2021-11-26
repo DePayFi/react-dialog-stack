@@ -1,17 +1,17 @@
 ## Quickstart
 
 ```
-yarn add depay-react-dialog-stack
+yarn add @depay/react-dialog-stack
 ```
 
 or 
 
 ```
-npm install --save depay-react-dialog-stack
+npm install --save @depay/react-dialog-stack
 ```
 
 ```javascript
-import { ReactDialogStack } from 'depay-react-dialog-stack'
+import { ReactDialogStack } from '@depay/react-dialog-stack'
 
   closeDialogStack() {
     this.setState({openDialogStack: false});
@@ -39,7 +39,7 @@ render() {
 ### Render
 
 ```javascript
-import { ReactDialogStack } from 'depay-react-dialog-stack'
+import { ReactDialogStack } from '@depay/react-dialog-stack'
 
 render() {
   return(
@@ -111,7 +111,7 @@ Contexts can be used in dialogs passed to `ReactDialogStack` in order to communi
 `CloseStackContext` provides `close` which can be used to close the entire `ReactDialogStack`.
 
 ```javascript
-import { CloseStackContext } from 'depay-react-dialog-stack'
+import { CloseStackContext } from '@depay/react-dialog-stack'
 
 render() {
   return(
@@ -136,7 +136,7 @@ render() {
 Either pass the dialog name as configured in `ReactDialogStack` prop named `dialogs` or pass `back` to `navigate` to unstack the current dialog. 
 
 ```javascript
-import { NavigateStackContext } from 'depay-react-dialog-stack'
+import { NavigateStackContext } from '@depay/react-dialog-stack'
 
 render() {
   return(
@@ -165,7 +165,7 @@ render() {
 `StackContext` provides `stack` which provides information about the current stack:
 
 ```javascript
-import { StackContext } from 'depay-react-dialog-stack'
+import { StackContext } from '@depay/react-dialog-stack'
 
 render() {
   return(

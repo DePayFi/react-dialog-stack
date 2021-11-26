@@ -944,6 +944,13 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@depay/react-dialog@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@depay/react-dialog/-/react-dialog-11.0.0.tgz#b2b5744e1b3f67729c20b9284b62594e7336313c"
+  integrity sha512-vYyP5bwfoYfTuwD0WVYrYmcsZXpSO3m54RowHivhWUuZyE6uLK+D+C5SJwA7fRTpNwFPn3NLzw63C+SI04u66w==
+  dependencies:
+    react-dom "^17.0.1"
+
 "@eslint/eslintrc@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.2.2.tgz#d01fc791e2fc33e88a29d6f3dc7e93d0cd784b76"
@@ -2198,13 +2205,6 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
-
-depay-react-dialog@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/depay-react-dialog/-/depay-react-dialog-10.0.1.tgz#6b71104973dd1f1d979773943408bfe934be8549"
-  integrity sha512-SziAbCY6cCr6hZUoKJQ6yZxddSsBMZmPg4UmRw7d+HaSbouVBxf6s4wfxc0FC/wnVlF210SVw4cU9qb1fiyM9A==
-  dependencies:
-    react-dom "^17.0.1"
 
 doctrine@1.5.0:
   version "1.5.0"

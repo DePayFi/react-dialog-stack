@@ -1,6 +1,6 @@
 import { StackContext, CloseStackContext, NavigateStackContext } from 'src'
 
-describe('depay-react-dialog', () => {
+describe('library', () => {
   
   it('should export StackContext', () => {
     expect(typeof(StackContext.Provider)).toBe('object');
