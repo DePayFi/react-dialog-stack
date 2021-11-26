@@ -72,7 +72,7 @@
 
   var StackContext = React__default['default'].createContext();
 
-  const _jsxFileName = "/Users/sebastian/Work/DePay/depay-react-dialog-stack/src/index.jsx";
+  const _jsxFileName = "/Users/sebastian/Work/DePay/react-dialog-stack/src/index.jsx";
   class ReactDialogStack extends React__default['default'].Component {
     constructor(props) {
       super(props);
