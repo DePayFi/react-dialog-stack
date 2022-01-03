@@ -1,9 +1,10 @@
 {
   "name": "@depay/react-dialog-stack",
   "moduleName": "ReactDialogStack",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "A flexible dialog stack for react widgets.",
-  "main": "./dist/cjs/index.js",
+  "main": "./dist/umd/index.js",
+  "module": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
@@ -34,7 +35,7 @@
   "homepage": "https://github.com/DePayFi/react-dialog-stack#readme",
   "private": false,
   "dependencies": {
-    "@depay/react-dialog": "^11.0.1"
+    "@depay/react-dialog": "^12.0.0"
   },
   "peerDependencies": {
     "react": "^17",
