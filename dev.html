@@ -33,9 +33,13 @@
       }
     </style>
     <script>
+      const setNavigate = (navigate)=>{
+        window.navigate = navigate
+      }
+
       var updateStack = function(open) {
         ReactDOM.render(
-          React.createElement(window.DemoStack.DemoStack, { open: open, close: ()=>updateStack(false)}),
+          React.createElement(window.DemoStack.DemoStack, { setNavigate, open: open, close: ()=>updateStack(false)}),
           document.getElementById('dialog')
         );
       }

@@ -10,6 +10,8 @@ class ReactDialogStack extends React.Component {
   constructor(props) {
     super(props)
 
+    if(props.setNavigate) { props.setNavigate(this.navigate.bind(this)) }
+      
     this.state = {
       stack: [props.start],
       animating: false,

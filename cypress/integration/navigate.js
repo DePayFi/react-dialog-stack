@@ -20,6 +20,28 @@ describe('navigate ReactDialogStack', () => {
     })
   })
 
+  it('allows to set a navigator and use the navigator to navigate to other dialogs', () => {
+  
+    cy.visit('cypress/test.html').then((contentWindow) => {
+      cy.document().then((document) => {
+
+        let navigate
+        
+        const setNavigate = (navigator)=> {
+          navigate = navigator
+        }
+
+        ReactDOM.render(
+          React.createElement(DemoStack, { setNavigate, document: document, open: true }),
+          document.getElementById('app')
+        );
+
+        navigate('NumberTwo')
+        cy.contains('h1', 'I am Dialog Number 2').should('exist')
+      })
+    })
+  })
+
   it('allows to navigate to a third dialog and all the way back to the first', () => {
   
     cy.visit('cypress/test.html').then((contentWindow) => {
