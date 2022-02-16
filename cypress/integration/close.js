@@ -65,7 +65,7 @@ describe('close ReactDialogStack', () => {
 
         cy.get('h1').should('exist')
 
-        cy.get('.ReactDialogStackCell').click(1, 1)
+        cy.get('.ReactDialogStack').click(1, 1)
 
         cy.get('h1').should('not.exist')
       })
