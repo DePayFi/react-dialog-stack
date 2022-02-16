@@ -128,7 +128,11 @@ class ReactDialogStack extends React.Component {
           this.classForDirection(),
         ]
         return (
-          <div key={index} className={['ReactDialogStack'].concat(stackState).join(' ')} onClick={this.onClick.bind(this)}>
+          <div
+            key={index}
+            className={['ReactDialogStack'].concat(stackState).join(' ')}
+            onClick={this.onClick.bind(this)}
+          >
             <NavigateStackContext.Provider
               value={{ navigate: this.navigate.bind(this), set: this.set.bind(this) }}
             >
