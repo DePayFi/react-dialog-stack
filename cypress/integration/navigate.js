@@ -76,7 +76,7 @@ describe('navigate ReactDialogStack', () => {
         cy.get('.DialogNumber1').contains('button', 'Next').click()
         cy.contains('h1', 'I am Dialog Number 2').should('exist')
 
-        cy.get('.ReactDialogStack.active').find('.ReactDialogStack').click(1, 1)
+        cy.get('.ReactDialogStack.active').click(1, 1)
         cy.contains('h1', 'I am Dialog Number 1').should('exist')
       })
     })
