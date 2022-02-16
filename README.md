@@ -36,7 +36,7 @@ render() {
 
 ## Demo
 
-https://depayfi.github.io/react-dialog-stack/dev.html
+https://depayfi.github.io/react-dialog-stack/demo.html
 
 ## Functionalities
 

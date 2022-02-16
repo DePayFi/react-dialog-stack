@@ -2,9 +2,12 @@ export default function () {
   return `
 
     .ReactDialogStack {
+      align-items: center;
       bottom: 0;
-      display: table;
+      display: flex;
+      flex: 1;
       height: 100%;
+      justify-content: center;
       position: absolute;
       top: 0;
       transition: left 0.1s ease, opacity 0.2s ease;

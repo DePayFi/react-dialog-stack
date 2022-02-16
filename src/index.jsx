@@ -128,20 +128,16 @@ class ReactDialogStack extends React.Component {
           this.classForDirection(),
         ]
         return (
-          <div key={index} className={['ReactDialogStack'].concat(stackState).join(' ')}>
-            <div className="ReactDialogStackRow">
-              <div className="ReactDialogStackCell" onClick={this.onClick.bind(this)}>
-                <NavigateStackContext.Provider
-                  value={{ navigate: this.navigate.bind(this), set: this.set.bind(this) }}
-                >
-                  <CloseStackContext.Provider value={this.close.bind(this)}>
-                    <StackContext.Provider value={this.state.stack}>
-                      <div className="ReactDialogAnimation">{this.props.dialogs[route]}</div>
-                    </StackContext.Provider>
-                  </CloseStackContext.Provider>
-                </NavigateStackContext.Provider>
-              </div>
-            </div>
+          <div key={index} className={['ReactDialogStack'].concat(stackState).join(' ')} onClick={this.onClick.bind(this)}>
+            <NavigateStackContext.Provider
+              value={{ navigate: this.navigate.bind(this), set: this.set.bind(this) }}
+            >
+              <CloseStackContext.Provider value={this.close.bind(this)}>
+                <StackContext.Provider value={this.state.stack}>
+                  <div className="ReactDialogAnimation">{this.props.dialogs[route]}</div>
+                </StackContext.Provider>
+              </CloseStackContext.Provider>
+            </NavigateStackContext.Provider>
           </div>
         )
       }.bind(this),
@@ -153,7 +149,7 @@ class ReactDialogStack extends React.Component {
       event.target &&
       event.target.className &&
       event.target.className.match &&
-      event.target.className.match('ReactDialogStackCell') // clicked background
+      event.target.className.match('ReactDialogStack') // clicked background
     ) {
       if (this.state.stack.length > 1) {
         this.unstack()

@@ -16,9 +16,12 @@
     return `
 
     .ReactDialogStack {
+      align-items: center;
       bottom: 0;
-      display: table;
+      display: flex;
+      flex: 1;
       height: 100%;
+      justify-content: center;
       position: absolute;
       top: 0;
       transition: left 0.1s ease, opacity 0.2s ease;
@@ -195,17 +198,13 @@
             this.classForDirection(),
           ];
           return (
-            React__default['default'].createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), __self: this, __source: {fileName: _jsxFileName, lineNumber: 131}}
-              , React__default['default'].createElement('div', { className: "ReactDialogStackRow", __self: this, __source: {fileName: _jsxFileName, lineNumber: 132}}
-                , React__default['default'].createElement('div', { className: "ReactDialogStackCell", onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 133}}
-                  , React__default['default'].createElement(NavigateStackContext.Provider, {
-                    value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 134}}
-                  
-                    , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 137}}
-                      , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 138}}
-                        , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 139}}, this.props.dialogs[route])
-                      )
-                    )
+            React__default['default'].createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 131}}
+              , React__default['default'].createElement(NavigateStackContext.Provider, {
+                value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 132}}
+              
+                , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 135}}
+                  , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 136}}
+                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 137}}, this.props.dialogs[route])
                   )
                 )
               )
@@ -220,7 +219,7 @@
         event.target &&
         event.target.className &&
         event.target.className.match &&
-        event.target.className.match('ReactDialogStackCell') // clicked background
+        event.target.className.match('ReactDialogStack') // clicked background
       ) {
         if (this.state.stack.length > 1) {
           this.unstack();
@@ -246,9 +245,9 @@
           open: this.props.open,
           document: this.props.document,
           container: this.props.container,
-          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 177}}
+          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 173}}
         
-          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 184}}, ReactDialogStackStyle())
+          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 180}}, ReactDialogStackStyle())
           , this.renderStack()
         )
       )
