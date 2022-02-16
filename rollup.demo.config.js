@@ -11,5 +11,11 @@ export default Object.assign({}, rollup, {
       globals: globals,
       file: 'tmp/index.demo.js'
     },
+    {
+      format: 'umd',
+      name: 'DemoStack',
+      globals: globals,
+      file: 'demo/dist/index.js'
+    },
   ]
 })
