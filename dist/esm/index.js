@@ -192,13 +192,17 @@ class ReactDialogStack extends React.Component {
           this.classForDirection(),
         ];
         return (
-          React.createElement('div', { key: index, className: ['ReactDialogStack'].concat(stackState).join(' '), onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 131}}
+          React.createElement('div', {
+            key: index,
+            className: ['ReactDialogStack'].concat(stackState).join(' '),
+            onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 131}}
+          
             , React.createElement(NavigateStackContext.Provider, {
-              value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 132}}
+              value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 136}}
             
-              , React.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 135}}
-                , React.createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 136}}
-                  , React.createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 137}}, this.props.dialogs[route])
+              , React.createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 139}}
+                , React.createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 140}}
+                  , React.createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 141}}, this.props.dialogs[route])
                 )
               )
             )
@@ -239,9 +243,9 @@ class ReactDialogStack extends React.Component {
         open: this.props.open,
         document: this.props.document,
         container: this.props.container,
-        background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 173}}
+        background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 177}}
       
-        , React.createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 180}}, ReactDialogStackStyle())
+        , React.createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 184}}, ReactDialogStackStyle())
         , this.renderStack()
       )
     )
