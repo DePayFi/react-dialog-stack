@@ -944,10 +944,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@depay/react-dialog@^12.0.1":
-  version "12.0.1"
-  resolved "https://registry.yarnpkg.com/@depay/react-dialog/-/react-dialog-12.0.1.tgz#df8bba7a63eb941bae1b05ed1d257238a75b6577"
-  integrity sha512-AIR14dN+vOiRL5nvh3eMWpc6IwnvAwgYvRaB/2Jz2xM1T7TgScd5d0dz2tNxBc8/ocpa/wXyQSlCntdZ697nRQ==
+"@depay/react-dialog@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@depay/react-dialog/-/react-dialog-13.0.0.tgz#f85e8a5c3ef88a9b8fa1681b5398cf031930d46a"
+  integrity sha512-jDXTDk6oFcG5kzlASLZNOQhvBHcUfC0GJGzraWZT7s9m1TEtZdD1DtVmoAgYIJgioFW+zWxRskFkuELxW61hIw==
 
 "@eslint/eslintrc@^0.2.2":
   version "0.2.2"

@@ -34,6 +34,10 @@ render() {
 
 ```
 
+## Demo
+
+https://depayfi.github.io/react-dialog-stack/
+
 ## Functionalities
 
 ### Render
