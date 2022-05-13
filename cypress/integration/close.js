@@ -9,20 +9,21 @@ describe('close ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        let updateStack = function(open){
-          ReactDOM.render(
-            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) }),
-            document.getElementById('app')
+        let root
+        var updateStack = function(open) {
+          if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('app')) }
+          root.render(
+            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) })
           );
         }
 
-        updateStack(true);
-
+        updateStack(true)
         cy.get('h1').should('exist')
 
-        updateStack(false);
-
-        cy.get('h1').should('not.exist')
+        cy.wait(1000).then(()=>{
+          updateStack(false)
+          cy.get('h1').should('not.exist')
+        })
       })
     })
   })
@@ -32,10 +33,11 @@ describe('close ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        let updateStack = function(open){
-          ReactDOM.render(
-            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) }),
-            document.getElementById('app')
+        let root
+        var updateStack = function(open) {
+          if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('app')) }
+          root.render(
+            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) })
           );
         }
 
@@ -54,10 +56,11 @@ describe('close ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        let updateStack = function(open){
-          ReactDOM.render(
-            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) }),
-            document.getElementById('app')
+        let root
+        var updateStack = function(open) {
+          if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('app')) }
+          root.render(
+            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) })
           );
         }
 
@@ -76,10 +79,11 @@ describe('close ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        let updateStack = function(open){
-          ReactDOM.render(
-            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) }),
-            document.getElementById('app')
+        let root
+        var updateStack = function(open) {
+          if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('app')) }
+          root.render(
+            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) })
           );
         }
 
@@ -98,10 +102,11 @@ describe('close ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        let updateStack = function(open){
-          ReactDOM.render(
-            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) }),
-            document.getElementById('app')
+        let root
+        var updateStack = function(open) {
+          if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('app')) }
+          root.render(
+            React.createElement(DemoStack, { document: document, open: open, close: ()=>updateStack(false) })
           );
         }
 

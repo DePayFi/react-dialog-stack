@@ -9,10 +9,11 @@ describe('ReactDialogStack background prop', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        let updateStack = function(open){
-          ReactDOM.render(
-            React.createElement(DemoStack, { document: document, open: open, background: 'rgba(255, 255, 255, 0.9)', close: ()=>updateStack(false) }),
-            document.getElementById('app')
+        let root
+        var updateStack = function(open) {
+          if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('app')) }
+          root.render(
+            React.createElement(DemoStack, { document: document, open: open, background: 'rgba(255, 255, 255, 0.9)', close: ()=>updateStack(false) })
           );
         }
 

@@ -9,9 +9,9 @@ describe('navigate ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, { document: document, open: true }),
-          document.getElementById('app')
         );
 
         cy.contains('button', 'Next').click()
@@ -31,13 +31,15 @@ describe('navigate ReactDialogStack', () => {
           navigate = navigator
         }
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, { setNavigate, document: document, open: true }),
-          document.getElementById('app')
         );
 
-        navigate('NumberTwo')
-        cy.contains('h1', 'I am Dialog Number 2').should('exist')
+        cy.wait(1000).then(()=>{
+          navigate('NumberTwo')
+          cy.contains('h1', 'I am Dialog Number 2').should('exist')
+        })
       })
     })
   })
@@ -47,9 +49,9 @@ describe('navigate ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, { document: document, open: true }),
-          document.getElementById('app')
         );
 
         cy.contains('button', 'Next').click()
@@ -68,9 +70,9 @@ describe('navigate ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, { document: document, open: true }),
-          document.getElementById('app')
         );
 
         cy.get('.DialogNumber1').contains('button', 'Next').click()
@@ -86,9 +88,9 @@ describe('navigate ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, { document: document, open: true }),
-          document.getElementById('app')
         );
 
         cy.get('.DialogNumber1').contains('button', 'Next').click()
@@ -105,9 +107,9 @@ describe('navigate ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, { document: document, open: true }),
-          document.getElementById('app')
         );
 
         cy.contains('button', 'Set').click()

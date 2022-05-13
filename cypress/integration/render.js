@@ -9,14 +9,16 @@ describe('render ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, { document: document, open: true }),
-          document.getElementById('app')
         );
 
-        expect(
-          document.querySelector('h1').innerHTML
-        ).to.equal('I am Dialog Number 1')
+        cy.wait(100).then(()=>{
+          expect(
+            document.querySelector('h1').innerHTML
+          ).to.equal('I am Dialog Number 1')
+        })
       })
     })
   })
@@ -26,18 +28,20 @@ describe('render ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        ReactDOM.render(
+        let root = ReactDOM.createRoot(document.getElementById('app'))
+        root.render(
           React.createElement(DemoStack, {
             document: document,
             container: document.getElementById('app'),
             open: true 
-          }),
-          document.getElementById('app')
+          })
         );
 
-        expect(
-          document.querySelector('h1').innerHTML
-        ).to.equal('I am Dialog Number 1')
+        cy.wait(100).then(()=>{
+          expect(
+            document.querySelector('h1').innerHTML
+          ).to.equal('I am Dialog Number 1')
+        })
       })
     })
   })

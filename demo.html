@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="https://depay.fi/favicon.png"/>
     <title>Development</title>
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script crossorigin src="https://unpkg.com/@depay/react-dialog@13"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@depay/react-dialog@14"></script>
     <script src="demo/dist/index.js"></script>
     <style>
       * { 
@@ -37,9 +37,9 @@
       }
 
       var updateStack = function(open) {
-        ReactDOM.render(
-          React.createElement(window.DemoStack.DemoStack, { setNavigate, open: open, close: ()=>updateStack(false)}),
-          document.getElementById('dialog')
+        const root = ReactDOM.createRoot(document.getElementById('dialog'))
+        root.render(
+          React.createElement(window.DemoStack.DemoStack, { setNavigate, open: open, close: ()=>updateStack(false)})
         );
       }
     </script>

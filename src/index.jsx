@@ -2,7 +2,6 @@ import CloseStackContext from './contexts/CloseStackContext'
 import NavigateStackContext from './contexts/NavigateStackContext'
 import React from 'react'
 import ReactDialogStackStyle from './styles/ReactDialogStackStyle'
-import ReactDOM from 'react-dom'
 import StackContext from './contexts/StackContext'
 import { ReactDialog } from '@depay/react-dialog'
 
