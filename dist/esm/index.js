@@ -73,8 +73,8 @@ class ReactDialogStack extends React.Component {
   constructor(props) {
     super(props);
 
-    if (props.setNavigate) {
-      props.setNavigate(this.navigate.bind(this));
+    if (props.setNavigator) {
+      props.setNavigator(this);
     }
 
     this.state = {

@@ -25,19 +25,19 @@ describe('navigate ReactDialogStack', () => {
     cy.visit('cypress/test.html').then((contentWindow) => {
       cy.document().then((document) => {
 
-        let navigate
+        let dialogNavigator
         
-        const setNavigate = (navigator)=> {
-          navigate = navigator
+        const setNavigator = (navigator)=> {
+          dialogNavigator = navigator
         }
 
         let root = ReactDOM.createRoot(document.getElementById('app'))
         root.render(
-          React.createElement(DemoStack, { setNavigate, document: document, open: true }),
+          React.createElement(DemoStack, { setNavigator, document: document, open: true }),
         );
 
         cy.wait(1000).then(()=>{
-          navigate('NumberTwo')
+          dialogNavigator.navigate('NumberTwo')
           cy.contains('h1', 'I am Dialog Number 2').should('exist')
         })
       })

@@ -80,8 +80,8 @@
     constructor(props) {
       super(props);
 
-      if (props.setNavigate) {
-        props.setNavigate(this.navigate.bind(this));
+      if (props.setNavigator) {
+        props.setNavigator(this);
       }
 
       this.state = {
@@ -365,7 +365,7 @@
           start: "NumberOne",
           open: this.props.open,
           close: this.props.close,
-          setNavigate: this.props.setNavigate,
+          setNavigator: this.props.setNavigator,
           background: this.props.background,
           dialogs: {
             NumberOne: React__default['default'].createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 20}}),

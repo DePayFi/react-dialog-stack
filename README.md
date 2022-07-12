@@ -80,24 +80,25 @@ render() {
   />
 ```
 
-`setNavigate (function)`: A function which will be called from the stack construtor to share the navigate function with the outside:
+`setNavigator (function)`: A function which will be called from the stack construtor to share the navigator to the outside:
 
 ```javascript
-  const setNavigate = (navigator)=> {
-    window.navigate = navigator
+  const setNavigator = (navigator)=> {
+    window.dialogNavigator = navigator
   }
 
   /*...*/
 
   <ReactDialogStack
     close={this.close}
-    setNavigate={setNavigate}
+    setNavigator={setNavigator}
     open={this.state.showDialog}
   />
 
   /*...*/
 
-  window.navigate('AnotherDialog')
+  window.dialogNavigator.navigate('AnotherDialog')
+  window.dialogNavigator.set('AnotherDialog')
 ```
 
 `document (Document)`: Allows to forward a different document where the dialog is supposed to live in (created through ReactDOM portal).

@@ -32,14 +32,14 @@
       }
     </style>
     <script>
-      const setNavigate = (navigate)=>{
-        window.navigate = navigate
+      const setNavigator = (navigator)=>{
+        window.dialogNavigator = navigator
       }
 
       var updateStack = function(open) {
         const root = ReactDOM.createRoot(document.getElementById('dialog'))
         root.render(
-          React.createElement(window.DemoStack.DemoStack, { setNavigate, open: open, close: ()=>updateStack(false)})
+          React.createElement(window.DemoStack.DemoStack, { setNavigator, open: open, close: ()=>updateStack(false)})
         );
       }
     </script>
