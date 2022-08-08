@@ -1,7 +1,7 @@
 {
   "name": "@depay/react-dialog-stack",
   "moduleName": "ReactDialogStack",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "A flexible dialog stack for react widgets.",
   "main": "./dist/umd/index.js",
   "module": "./dist/esm/index.js",
@@ -27,7 +27,7 @@
     "dialog",
     "stack"
   ],
-  "author": "depay.fi",
+  "author": "depay.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DePayFi/react-dialog-stack/issues"
