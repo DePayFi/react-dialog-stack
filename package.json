@@ -34,7 +34,7 @@
   "homepage": "https://depay.com",
   "private": false,
   "dependencies": {
-    "@depay/react-dialog": "^14.0.0"
+    "@depay/react-dialog": "^14.0.3"
   },
   "peerDependencies": {
     "react": "^18",
