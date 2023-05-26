@@ -90,7 +90,7 @@
         animation: null,
         direction: 'forward',
         animationSpeed: 200,
-        dialogKey: new Date().getTime(),
+        dialogKey: props.dialogKey || new Date().getTime(),
       };
     }
 
