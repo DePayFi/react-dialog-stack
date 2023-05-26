@@ -8,14 +8,16 @@ class NumberTwoDialog extends React.Component {
     return(
       <NavigateStackContext.Consumer>
         {({ navigate }) => (
-          <div className='DialogNumber2'>
-            <h1>I am Dialog Number 2</h1>
-            <button onClick={()=>navigate('back')}>
-              Back
-            </button>
-            <button onClick={()=>navigate('NumberThree')}>
-              Next
-            </button>
+          <div className='DialogNumber2 Dialog'>
+            <div>
+              <h1>I am Dialog Number 2</h1>
+              <button onClick={()=>navigate('back')}>
+                Back
+              </button>
+              <button onClick={()=>navigate('NumberThree')}>
+                Next
+              </button>
+            </div>
           </div>
         )}
       </NavigateStackContext.Consumer>

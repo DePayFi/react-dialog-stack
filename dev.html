@@ -7,7 +7,7 @@
     <title>Development</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script crossorigin src="https://cdn.jsdelivr.net/npm/@depay/react-dialog@14.0.5"></script>
+    <script crossorigin src="https://cdn.jsdelivr.net/npm/@depay/react-dialog@14.0.6"></script>
     <script src="tmp/index.demo.js"></script>
     <script src="tmp/index.dev.js"></script>
     <style>
@@ -31,6 +31,17 @@
         top: 0;
         width: 100vw;
       }
+
+      .Dialog {
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: middle;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.4);
+        width: 400px;
+        height: 300px;
+      }
     </style>
     <script>
       const setNavigator = (navigator)=>{
@@ -38,10 +49,17 @@
       }
 
       let root
-      var updateStack = function(open) {
+      window.updateStack = function(open) {
         if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('dialog')) }
         root.render(
           React.createElement(window.DemoStack.DemoStack, { setNavigator, open: open, close: ()=>updateStack(false)}),
+        );
+      }
+
+      window.updateAnotherStack = function(open) {
+        if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('dialog')) }
+        root.render(
+          React.createElement(window.DemoStack.DemoStack2, { setNavigator, open: open, close: ()=>updateAnotherStack(false)}),
         );
       }
     </script>

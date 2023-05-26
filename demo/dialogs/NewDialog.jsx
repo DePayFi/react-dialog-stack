@@ -10,8 +10,10 @@ class NewDialog extends React.Component {
         {close => (
           <NavigateStackContext.Consumer>
             {({ navigate }) => (
-              <div className='NewDialog'>
-                <h1>I am an entirely new Dialog</h1>
+              <div className='NewDialog Dialog'>
+                <div>
+                  <h1>I am an entirely new Dialog</h1>
+                </div>
               </div>
             )}
           </NavigateStackContext.Consumer>

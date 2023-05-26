@@ -17,14 +17,36 @@ class DemoStack extends React.Component {
         setNavigator={this.props.setNavigator}
         background={this.props.background}
         dialogs={{
-          NumberOne: (props) => <NumberOneDialog {...props}/>,
-          NumberTwo: (props)=> <NumberTwoDialog {...props}/>,
-          NumberThree: (props)=> <NumberThreeDialog {...props}/>,
-          New: (props)=> <NewDialog {...props}/>
+          NumberOne: <NumberOneDialog/>,
+          NumberTwo: <NumberTwoDialog/>,
+          NumberThree: <NumberThreeDialog/>,
+          New: <NewDialog/>
         }}
       />
     )
   }
 }
 
-export { DemoStack }
+class DemoStack2 extends React.Component {
+
+  render() {
+    return(
+      <ReactDialogStack
+        document={ this.props.document }
+        start='NumberOne'
+        open={this.props.open}
+        close={this.props.close}
+        setNavigator={this.props.setNavigator}
+        background={this.props.background}
+        dialogs={{
+          NumberOne: <NumberOneDialog/>,
+          NumberTwo: <NumberTwoDialog/>,
+          NumberThree: <NumberThreeDialog/>,
+          New: <NewDialog/>
+        }}
+      />
+    )
+  }
+}
+
+export { DemoStack, DemoStack2 }
