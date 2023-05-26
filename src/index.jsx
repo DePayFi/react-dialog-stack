@@ -19,11 +19,12 @@ class ReactDialogStack extends React.Component {
       animation: null,
       direction: 'forward',
       animationSpeed: 200,
+      key: new Date().getTime()
     }
   }
 
   set(stack) {
-    this.setState({ stack })
+    this.setState({ stack, key: new Date().getTime() })
   }
 
   navigate(route) {
@@ -128,7 +129,7 @@ class ReactDialogStack extends React.Component {
         ]
         return (
           <div
-            key={index}
+            key={this.state.key.toString() + index.toString()}
             className={['ReactDialogStack'].concat(stackState).join(' ')}
             onClick={this.onClick.bind(this)}
           >
@@ -174,6 +175,7 @@ class ReactDialogStack extends React.Component {
   render() {
     return (
       <ReactDialog
+        key={this.state.key}
         close={this.close.bind(this)}
         open={this.props.open}
         document={this.props.document}

@@ -90,11 +90,12 @@
         animation: null,
         direction: 'forward',
         animationSpeed: 200,
+        key: new Date().getTime()
       };
     }
 
     set(stack) {
-      this.setState({ stack });
+      this.setState({ stack, key: new Date().getTime() });
     }
 
     navigate(route) {
@@ -199,16 +200,16 @@
           ];
           return (
             React__default['default'].createElement('div', {
-              key: index,
+              key: this.state.key.toString() + index.toString(),
               className: ['ReactDialogStack'].concat(stackState).join(' '),
-              onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 130}}
+              onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 131}}
             
               , React__default['default'].createElement(NavigateStackContext.Provider, {
-                value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 135}}
+                value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 136}}
               
-                , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 138}}
-                  , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 139}}
-                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 140}}, this.props.dialogs[route])
+                , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 139}}
+                  , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 140}}
+                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 141}}, this.props.dialogs[route])
                   )
                 )
               )
@@ -245,13 +246,14 @@
     render() {
       return (
         React__default['default'].createElement(reactDialog.ReactDialog, {
+          key: this.state.key,
           close: this.close.bind(this),
           open: this.props.open,
           document: this.props.document,
           container: this.props.container,
-          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 176}}
+          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 177}}
         
-          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 183}}, ReactDialogStackStyle())
+          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 185}}, ReactDialogStackStyle())
           , this.renderStack()
         )
       )
