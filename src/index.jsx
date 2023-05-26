@@ -19,7 +19,7 @@ class ReactDialogStack extends React.Component {
       animation: null,
       direction: 'forward',
       animationSpeed: 200,
-      key: new Date().getTime()
+      key: new Date().getTime(),
     }
   }
 
