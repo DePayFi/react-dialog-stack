@@ -24,9 +24,9 @@ render() {
       close={this.closeDialogStack}
       start='StartDialog'
       dialogs={{
-        StartDialog: <StartDialog/>,
-        SecondDialog: <SecondDialog/>,
-        ThirdDialog: <ThirdDialog/>
+        StartDialog: (props)=> <StartDialog {...props}/>,
+        SecondDialog: (props)=> <SecondDialog {...props}/>,
+        ThirdDialog: (props)=> <ThirdDialog {...props}/>
       }}
     />
   )
@@ -52,9 +52,9 @@ render() {
       close={this.closeDialogStack}
       start='StartDialog'
       dialogs={{
-        StartDialog: <StartDialog/>,
-        SecondDialog: <SecondDialog/>,
-        ThirdDialog: <ThirdDialog/>
+        StartDialog: (props)=> <StartDialog {...props}/>,
+        SecondDialog: (props)=> <SecondDialog {...props}/>,
+        ThirdDialog: (props)=> <ThirdDialog {...props}/>
       }}
     />
   )

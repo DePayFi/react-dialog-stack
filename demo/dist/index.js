@@ -90,12 +90,12 @@
         animation: null,
         direction: 'forward',
         animationSpeed: 200,
-        key: new Date().getTime()
+        dialogKey: new Date().getTime(),
       };
     }
 
     set(stack) {
-      this.setState({ stack, key: new Date().getTime() });
+      this.setState({ dialogKey: new Date().getTime(), stack });
     }
 
     navigate(route) {
@@ -200,7 +200,7 @@
           ];
           return (
             React__default['default'].createElement('div', {
-              key: this.state.key.toString() + index.toString(),
+              key: this.state.dialogKey.toString() + index.toString(),
               className: ['ReactDialogStack'].concat(stackState).join(' '),
               onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 131}}
             
@@ -209,7 +209,7 @@
               
                 , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 139}}
                   , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 140}}
-                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 141}}, this.props.dialogs[route])
+                    , React__default['default'].createElement('div', { key: this.state.dialogKey.toString() + index.toString(), className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 141}}, this.props.dialogs[route]({ key: this.state.dialogKey, dialogKey: this.state.dialogKey }))
                   )
                 )
               )
@@ -244,17 +244,16 @@
     }
 
     render() {
-      console.log(this.state.key);
       return (
         React__default['default'].createElement(reactDialog.ReactDialog, {
-          key: this.state.key,
+          key: this.state.dialogKey,
           close: this.close.bind(this),
           open: this.props.open,
           document: this.props.document,
           container: this.props.container,
-          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 178}}
+          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 177}}
         
-          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 186}}, ReactDialogStackStyle())
+          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 185}}, ReactDialogStackStyle())
           , this.renderStack()
         )
       )
@@ -371,10 +370,10 @@
           setNavigator: this.props.setNavigator,
           background: this.props.background,
           dialogs: {
-            NumberOne: React__default['default'].createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 20}}),
-            NumberTwo: React__default['default'].createElement(NumberTwoDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 21}}),
-            NumberThree: React__default['default'].createElement(NumberThreeDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 22}}),
-            New: React__default['default'].createElement(NewDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 23}})
+            NumberOne: (props) => React__default['default'].createElement(NumberOneDialog, { ...props, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 20}}),
+            NumberTwo: (props)=> React__default['default'].createElement(NumberTwoDialog, { ...props, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 21}}),
+            NumberThree: (props)=> React__default['default'].createElement(NumberThreeDialog, { ...props, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 22}}),
+            New: (props)=> React__default['default'].createElement(NewDialog, { ...props, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 23}})
           }, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 12}}
         )
       )

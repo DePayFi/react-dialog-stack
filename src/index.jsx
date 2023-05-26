@@ -19,12 +19,12 @@ class ReactDialogStack extends React.Component {
       animation: null,
       direction: 'forward',
       animationSpeed: 200,
-      key: new Date().getTime(),
+      dialogKey: new Date().getTime(),
     }
   }
 
   set(stack) {
-    this.setState({ stack, key: new Date().getTime() })
+    this.setState({ dialogKey: new Date().getTime(), stack })
   }
 
   navigate(route) {
@@ -129,7 +129,7 @@ class ReactDialogStack extends React.Component {
         ]
         return (
           <div
-            key={this.state.key.toString() + index.toString()}
+            key={this.state.dialogKey.toString() + index.toString()}
             className={['ReactDialogStack'].concat(stackState).join(' ')}
             onClick={this.onClick.bind(this)}
           >
@@ -138,7 +138,15 @@ class ReactDialogStack extends React.Component {
             >
               <CloseStackContext.Provider value={this.close.bind(this)}>
                 <StackContext.Provider value={this.state.stack}>
-                  <div className="ReactDialogAnimation">{this.props.dialogs[route]}</div>
+                  <div
+                    key={this.state.dialogKey.toString() + index.toString()}
+                    className="ReactDialogAnimation"
+                  >
+                    {this.props.dialogs[route]({
+                      key: this.state.dialogKey,
+                      dialogKey: this.state.dialogKey,
+                    })}
+                  </div>
                 </StackContext.Provider>
               </CloseStackContext.Provider>
             </NavigateStackContext.Provider>
@@ -175,7 +183,7 @@ class ReactDialogStack extends React.Component {
   render() {
     return (
       <ReactDialog
-        key={this.state.key}
+        key={this.state.dialogKey}
         close={this.close.bind(this)}
         open={this.props.open}
         document={this.props.document}

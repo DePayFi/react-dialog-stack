@@ -17,10 +17,10 @@ class DemoStack extends React.Component {
         setNavigator={this.props.setNavigator}
         background={this.props.background}
         dialogs={{
-          NumberOne: <NumberOneDialog/>,
-          NumberTwo: <NumberTwoDialog/>,
-          NumberThree: <NumberThreeDialog/>,
-          New: <NewDialog/>
+          NumberOne: (props) => <NumberOneDialog {...props}/>,
+          NumberTwo: (props)=> <NumberTwoDialog {...props}/>,
+          NumberThree: (props)=> <NumberThreeDialog {...props}/>,
+          New: (props)=> <NewDialog {...props}/>
         }}
       />
     )
