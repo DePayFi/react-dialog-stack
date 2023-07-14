@@ -13,7 +13,7 @@ class ReactDialogStack extends React.Component {
       props.setNavigator(this)
     }
 
-    if(props.stacked) {
+    if (props.stacked) {
       const direction = typeof props.stacked === 'string' ? props.stacked : 'forward'
       this.state = {
         stack: [],
@@ -22,7 +22,7 @@ class ReactDialogStack extends React.Component {
         direction,
         animationSpeed: 200,
       }
-      setTimeout(()=>this.navigate(props.start, direction), 10)
+      setTimeout(() => this.navigate(props.start, direction), 10)
     } else {
       this.state = {
         stack: [props.start],
@@ -39,9 +39,9 @@ class ReactDialogStack extends React.Component {
   }
 
   hide(direction = 'forward') {
-    if(direction === 'backward') {
+    if (direction === 'backward') {
       this.setState({ stack: [null, ...this.state.stack] })
-      setTimeout(()=>this.navigate('back'), 10)
+      setTimeout(() => this.navigate('back'), 10)
     } else {
       this.navigate(null)
     }
@@ -156,7 +156,11 @@ class ReactDialogStack extends React.Component {
             onClick={this.onClick.bind(this)}
           >
             <NavigateStackContext.Provider
-              value={{ navigate: this.navigate.bind(this), set: this.set.bind(this), hide: this.hide.bind(this) }}
+              value={{
+                navigate: this.navigate.bind(this),
+                set: this.set.bind(this),
+                hide: this.hide.bind(this),
+              }}
             >
               <CloseStackContext.Provider value={this.close.bind(this)}>
                 <StackContext.Provider value={this.state.stack}>
@@ -190,7 +194,7 @@ class ReactDialogStack extends React.Component {
       this.unstack()
     } else {
       this.props.close()
-      setTimeout(()=>this.setState({ stack: this.state.stack.slice(0, 1) }), 400)
+      setTimeout(() => this.setState({ stack: this.state.stack.slice(0, 1) }), 400)
     }
   }
 
