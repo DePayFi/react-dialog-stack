@@ -1,7 +1,7 @@
 {
   "name": "@depay/react-dialog-stack",
   "moduleName": "ReactDialogStack",
-  "version": "8.0.3",
+  "version": "8.1.0",
   "description": "A flexible dialog stack for react widgets.",
   "main": "./dist/umd/index.js",
   "module": "./dist/esm/index.js",
@@ -34,7 +34,7 @@
   "homepage": "https://depay.com",
   "private": false,
   "dependencies": {
-    "@depay/react-dialog": "^14.0.6"
+    "@depay/react-dialog": "^14.1.0"
   },
   "peerDependencies": {
     "react": "^18",
@@ -69,6 +69,7 @@
     "react-testing-library": "^8.0.1",
     "rollup": "^2.34.2",
     "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-serve": "^1.1.0"
+    "rollup-plugin-serve": "^1.1.0",
+    "webpack": "^5.88.1"
   }
 }

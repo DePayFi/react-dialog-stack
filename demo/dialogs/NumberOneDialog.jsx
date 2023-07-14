@@ -7,7 +7,7 @@ class NumberOneDialog extends React.Component {
   render() {
     return(
       <NavigateStackContext.Consumer>
-        {({ navigate, set }) => (
+        {({ navigate, set, hide }) => (
           <CloseStackContext.Consumer>
             {close => (
               <div className='DialogNumber1 Dialog'>
@@ -21,6 +21,12 @@ class NumberOneDialog extends React.Component {
                   </button>
                   <button onClick={()=>set(['New'])}>
                     Set
+                  </button>
+                  <button onClick={()=>{
+                    hide('forward')
+                    setTimeout(()=>window.updateAnotherStack(true, 'forward'), 100)
+                  }}>
+                    Stack Stack
                   </button>
                 </div>
               </div>

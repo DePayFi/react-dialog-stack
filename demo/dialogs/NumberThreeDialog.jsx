@@ -16,8 +16,8 @@ class NumberThreeDialog extends React.Component {
                   <button onClick={()=>navigate('back')}>
                     Back
                   </button>
-                  <button onClick={close}>
-                    Close
+                  <button onClick={()=>close(true)}>
+                    Close (force)
                   </button>
                 </div>
               </div>

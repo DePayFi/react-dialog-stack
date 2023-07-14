@@ -4,6 +4,7 @@ import NumberOneDialog from '../dialogs/NumberOneDialog'
 import NumberTwoDialog from '../dialogs/NumberTwoDialog'
 import NumberThreeDialog from '../dialogs/NumberThreeDialog'
 import NewDialog from '../dialogs/NewDialog'
+import NewStackDialog from '../dialogs/NewStackDialog'
 
 class DemoStack extends React.Component {
 
@@ -16,6 +17,7 @@ class DemoStack extends React.Component {
         close={this.props.close}
         setNavigator={this.props.setNavigator}
         background={this.props.background}
+        stacked={this.props.stacked}
         dialogs={{
           NumberOne: <NumberOneDialog/>,
           NumberTwo: <NumberTwoDialog/>,
@@ -33,16 +35,14 @@ class DemoStack2 extends React.Component {
     return(
       <ReactDialogStack
         document={ this.props.document }
-        start='NumberOne'
+        start='NewStack'
         open={this.props.open}
         close={this.props.close}
         setNavigator={this.props.setNavigator}
         background={this.props.background}
+        stacked={this.props.stacked}
         dialogs={{
-          NumberOne: <NumberOneDialog/>,
-          NumberTwo: <NumberTwoDialog/>,
-          NumberThree: <NumberThreeDialog/>,
-          New: <NewDialog/>
+          NewStack: <NewStackDialog/>,
         }}
       />
     )

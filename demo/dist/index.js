@@ -84,20 +84,41 @@
         props.setNavigator(this);
       }
 
-      this.state = {
-        stack: [props.start],
-        animating: false,
-        animation: null,
-        direction: 'forward',
-        animationSpeed: 200,
-      };
+      if(props.stacked) {
+        const direction = typeof props.stacked === 'string' ? props.stacked : 'forward';
+        this.state = {
+          stack: [],
+          animating: false,
+          animation: null,
+          direction,
+          animationSpeed: 200,
+        };
+        setTimeout(()=>this.navigate(props.start, direction), 10);
+      } else {
+        this.state = {
+          stack: [props.start],
+          animating: false,
+          animation: null,
+          direction: 'forward',
+          animationSpeed: 200,
+        };
+      }
     }
 
     set(stack) {
       this.setState({ stack });
     }
 
-    navigate(route) {
+    hide(direction = 'forward') {
+      if(direction === 'backward') {
+        this.setState({ stack: [null, ...this.state.stack] });
+        setTimeout(()=>this.navigate('back'), 10);
+      } else {
+        this.navigate(null);
+      }
+    }
+
+    navigate(route, direction = 'forward') {
       if (this.state.stack.indexOf(route) > -1) {
         return
       }
@@ -108,7 +129,7 @@
       this.setState({
         stack: this.state.stack.concat(route),
         animating: true,
-        direction: 'forward',
+        direction,
         animation: setTimeout(
           function () {
             this.setState({
@@ -175,6 +196,8 @@
         } else {
           return 'stale'
         }
+      } else if (this.state.animating && this.props.stacked && index === 0) {
+        return 'next'
       }
     }
 
@@ -201,14 +224,14 @@
             React__default['default'].createElement('div', {
               key: index,
               className: ['ReactDialogStack'].concat(stackState).join(' '),
-              onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 130}}
+              onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 153}}
             
               , React__default['default'].createElement(NavigateStackContext.Provider, {
-                value: { navigate: this.navigate.bind(this), set: this.set.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 135}}
+                value: { navigate: this.navigate.bind(this), set: this.set.bind(this), hide: this.hide.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 158}}
               
-                , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 138}}
-                  , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 139}}
-                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 140}}, this.props.dialogs[route])
+                , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 161}}
+                  , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 162}}
+                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 163}}, this.props.dialogs[route])
                   )
                 )
               )
@@ -233,12 +256,12 @@
       }
     }
 
-    close() {
-      if (this.state.stack.length > 1) {
+    close(force) {
+      if (this.state.stack.length > 1 && !force) {
         this.unstack();
       } else {
-        this.setState({ stack: this.state.stack.slice(0, 1) });
         this.props.close();
+        setTimeout(()=>this.setState({ stack: this.state.stack.slice(0, 1) }), 400);
       }
     }
 
@@ -249,9 +272,10 @@
           open: this.props.open,
           document: this.props.document,
           container: this.props.container,
-          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 176}}
+          animate: this.props.stacked ? false : true,
+          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 199}}
         
-          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 183}}, ReactDialogStackStyle())
+          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 207}}, ReactDialogStackStyle())
           , this.renderStack()
         )
       )
@@ -264,7 +288,7 @@
     render() {
       return(
         React__default['default'].createElement(NavigateStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$1, lineNumber: 9}}
-          , ({ navigate, set }) => (
+          , ({ navigate, set, hide }) => (
             React__default['default'].createElement(CloseStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$1, lineNumber: 11}}
               , close => (
                 React__default['default'].createElement('div', { className: "DialogNumber1 Dialog" , __self: this, __source: {fileName: _jsxFileName$1, lineNumber: 13}}
@@ -277,6 +301,12 @@
 
                     )
                     , React__default['default'].createElement('button', { onClick: ()=>set(['New']), __self: this, __source: {fileName: _jsxFileName$1, lineNumber: 22}}, "Set"
+
+                    )
+                    , React__default['default'].createElement('button', { onClick: ()=>{
+                      hide('forward');
+                      setTimeout(()=>window.updateAnotherStack(true, 'forward'), 100);
+                    }, __self: this, __source: {fileName: _jsxFileName$1, lineNumber: 25}}, "Stack Stack"
 
                     )
                   )
@@ -294,16 +324,23 @@
 
     render() {
       return(
-        React__default['default'].createElement(NavigateStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 9}}
-          , ({ navigate }) => (
-            React__default['default'].createElement('div', { className: "DialogNumber2 Dialog" , __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 11}}
-              , React__default['default'].createElement('div', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 12}}
-                , React__default['default'].createElement('h1', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 13}}, "I am Dialog Number 2"    )
-                , React__default['default'].createElement('button', { onClick: ()=>navigate('back'), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 14}}, "Back"
+        React__default['default'].createElement(CloseStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 9}}
+          , close => (
+            React__default['default'].createElement(NavigateStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 11}}
+              , ({ navigate }) => (
+                React__default['default'].createElement('div', { className: "DialogNumber2 Dialog" , __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 13}}
+                  , React__default['default'].createElement('div', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 14}}
+                    , React__default['default'].createElement('h1', {__self: this, __source: {fileName: _jsxFileName$2, lineNumber: 15}}, "I am Dialog Number 2"    )
+                    , React__default['default'].createElement('button', { onClick: ()=>navigate('back'), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 16}}, "Back"
 
-                )
-                , React__default['default'].createElement('button', { onClick: ()=>navigate('NumberThree'), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 17}}, "Next"
+                    )
+                    , React__default['default'].createElement('button', { onClick: ()=>navigate('NumberThree'), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 19}}, "Next"
 
+                    )
+                    , React__default['default'].createElement('button', { onClick: ()=>close(), __self: this, __source: {fileName: _jsxFileName$2, lineNumber: 22}}, "Close"
+
+                    )
+                  )
                 )
               )
             )
@@ -328,7 +365,7 @@
                     , React__default['default'].createElement('button', { onClick: ()=>navigate('back'), __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 16}}, "Back"
 
                     )
-                    , React__default['default'].createElement('button', { onClick: close, __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 19}}, "Close"
+                    , React__default['default'].createElement('button', { onClick: ()=>close(true), __self: this, __source: {fileName: _jsxFileName$3, lineNumber: 19}}, "Close (force)"
 
                     )
                   )
@@ -363,7 +400,39 @@
     }
   }
 
-  const _jsxFileName$5 = "/Users/sebastian/Work/DePay/react-dialog-stack/demo/src/index.jsx";
+  const _jsxFileName$5 = "/Users/sebastian/Work/DePay/react-dialog-stack/demo/dialogs/NewStackDialog.jsx";
+  class NewStackDialog extends React__default['default'].Component {
+
+    render() {
+      return(
+        React__default['default'].createElement(CloseStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 9}}
+          , close => (
+            React__default['default'].createElement(NavigateStackContext.Consumer, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 11}}
+              , ({ navigate, hide }) => (
+                React__default['default'].createElement('div', { className: "NewStackDialog Dialog" , __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 13}}
+                  , React__default['default'].createElement('div', {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 14}}
+                    , React__default['default'].createElement('div', {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 15}}
+                      , React__default['default'].createElement('h1', {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 16}}, "I am an entirely new STACK"     )
+                    )
+                    , React__default['default'].createElement('div', {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 18}}
+                      , React__default['default'].createElement('button', { onClick: ()=>{
+                        hide('backward');
+                        setTimeout(()=>window.updateStack(true, 'backward'), 100);
+                      }, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 19}}, "Back to previous stack"
+
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    }
+  }
+
+  const _jsxFileName$6 = "/Users/sebastian/Work/DePay/react-dialog-stack/demo/src/index.jsx";
   class DemoStack extends React__default['default'].Component {
 
     render() {
@@ -375,12 +444,13 @@
           close: this.props.close,
           setNavigator: this.props.setNavigator,
           background: this.props.background,
+          stacked: this.props.stacked,
           dialogs: {
-            NumberOne: React__default['default'].createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 20}}),
-            NumberTwo: React__default['default'].createElement(NumberTwoDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 21}}),
-            NumberThree: React__default['default'].createElement(NumberThreeDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 22}}),
-            New: React__default['default'].createElement(NewDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 23}})
-          }, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 12}}
+            NumberOne: React__default['default'].createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 22}}),
+            NumberTwo: React__default['default'].createElement(NumberTwoDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 23}}),
+            NumberThree: React__default['default'].createElement(NumberThreeDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 24}}),
+            New: React__default['default'].createElement(NewDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 25}})
+          }, __self: this, __source: {fileName: _jsxFileName$6, lineNumber: 13}}
         )
       )
     }
@@ -392,17 +462,15 @@
       return(
         React__default['default'].createElement(ReactDialogStack, {
           document:  this.props.document ,
-          start: "NumberOne",
+          start: "NewStack",
           open: this.props.open,
           close: this.props.close,
           setNavigator: this.props.setNavigator,
           background: this.props.background,
+          stacked: this.props.stacked,
           dialogs: {
-            NumberOne: React__default['default'].createElement(NumberOneDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 42}}),
-            NumberTwo: React__default['default'].createElement(NumberTwoDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 43}}),
-            NumberThree: React__default['default'].createElement(NumberThreeDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 44}}),
-            New: React__default['default'].createElement(NewDialog, {__self: this, __source: {fileName: _jsxFileName$5, lineNumber: 45}})
-          }, __self: this, __source: {fileName: _jsxFileName$5, lineNumber: 34}}
+            NewStack: React__default['default'].createElement(NewStackDialog, {__self: this, __source: {fileName: _jsxFileName$6, lineNumber: 45}}),
+          }, __self: this, __source: {fileName: _jsxFileName$6, lineNumber: 36}}
         )
       )
     }

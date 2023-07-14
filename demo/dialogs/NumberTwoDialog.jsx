@@ -6,21 +6,28 @@ class NumberTwoDialog extends React.Component {
 
   render() {
     return(
-      <NavigateStackContext.Consumer>
-        {({ navigate }) => (
-          <div className='DialogNumber2 Dialog'>
-            <div>
-              <h1>I am Dialog Number 2</h1>
-              <button onClick={()=>navigate('back')}>
-                Back
-              </button>
-              <button onClick={()=>navigate('NumberThree')}>
-                Next
-              </button>
-            </div>
-          </div>
+      <CloseStackContext.Consumer>
+        {close => (
+          <NavigateStackContext.Consumer>
+            {({ navigate }) => (
+              <div className='DialogNumber2 Dialog'>
+                <div>
+                  <h1>I am Dialog Number 2</h1>
+                  <button onClick={()=>navigate('back')}>
+                    Back
+                  </button>
+                  <button onClick={()=>navigate('NumberThree')}>
+                    Next
+                  </button>
+                  <button onClick={()=>close()}>
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </NavigateStackContext.Consumer>
         )}
-      </NavigateStackContext.Consumer>
+      </CloseStackContext.Consumer>
     )
   }
 }

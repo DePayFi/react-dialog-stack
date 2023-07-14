@@ -7,7 +7,7 @@
     <title>Development</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script crossorigin src="https://unpkg.com/@depay/react-dialog@14.0.6"></script>
+    <script crossorigin src="https://unpkg.com/@depay/react-dialog@14.1.0"></script>
     <script src="demo/dist/index.js"></script>
     <style>
       * { 
@@ -36,10 +36,18 @@
         window.dialogNavigator = navigator
       }
 
-      var updateStack = function(open) {
-        const root = ReactDOM.createRoot(document.getElementById('dialog'))
+      let root
+      window.updateStack = function(open, stacked) {
+        if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('dialog')) }
         root.render(
-          React.createElement(window.DemoStack.DemoStack, { setNavigator, open: open, close: ()=>updateStack(false)})
+          React.createElement(window.DemoStack.DemoStack, { setNavigator, stacked, open: open, close: ()=>updateStack(false)}),
+        );
+      }
+
+      window.updateAnotherStack = function(open, stacked) {
+        if(typeof root == 'undefined') { root = ReactDOM.createRoot(document.getElementById('dialog')) }
+        root.render(
+          React.createElement(window.DemoStack.DemoStack2, { setNavigator, stacked, open: open, close: ()=>updateAnotherStack(false)}),
         );
       }
     </script>
