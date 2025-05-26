@@ -84,7 +84,7 @@
         props.setNavigator(this);
       }
 
-      if(props.stacked) {
+      if (props.stacked) {
         const direction = typeof props.stacked === 'string' ? props.stacked : 'forward';
         this.state = {
           stack: [],
@@ -93,7 +93,7 @@
           direction,
           animationSpeed: 200,
         };
-        setTimeout(()=>this.navigate(props.start, direction), 10);
+        setTimeout(() => this.navigate(props.start, direction), 10);
       } else {
         this.state = {
           stack: [props.start],
@@ -110,9 +110,9 @@
     }
 
     hide(direction = 'forward') {
-      if(direction === 'backward') {
+      if (direction === 'backward') {
         this.setState({ stack: [null, ...this.state.stack] });
-        setTimeout(()=>this.navigate('back'), 10);
+        setTimeout(() => this.navigate('back'), 10);
       } else {
         this.navigate(null);
       }
@@ -227,11 +227,15 @@
               onClick: this.onClick.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 153}}
             
               , React__default['default'].createElement(NavigateStackContext.Provider, {
-                value: { navigate: this.navigate.bind(this), set: this.set.bind(this), hide: this.hide.bind(this) }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 158}}
+                value: {
+                  navigate: this.navigate.bind(this),
+                  set: this.set.bind(this),
+                  hide: this.hide.bind(this),
+                }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 158}}
               
-                , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 161}}
-                  , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 162}}
-                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 163}}, this.props.dialogs[route])
+                , React__default['default'].createElement(CloseStackContext.Provider, { value: this.close.bind(this), __self: this, __source: {fileName: _jsxFileName, lineNumber: 165}}
+                  , React__default['default'].createElement(StackContext.Provider, { value: this.state.stack, __self: this, __source: {fileName: _jsxFileName, lineNumber: 166}}
+                    , React__default['default'].createElement('div', { className: "ReactDialogAnimation", __self: this, __source: {fileName: _jsxFileName, lineNumber: 167}}, this.props.dialogs[route])
                   )
                 )
               )
@@ -261,7 +265,7 @@
         this.unstack();
       } else {
         this.props.close();
-        setTimeout(()=>this.setState({ stack: this.state.stack.slice(0, 1) }), 400);
+        setTimeout(() => this.setState({ stack: this.state.stack.slice(0, 1) }), 400);
       }
     }
 
@@ -273,9 +277,9 @@
           document: this.props.document,
           container: this.props.container,
           animate: this.props.stacked ? false : true,
-          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 199}}
+          background: this.props.background, __self: this, __source: {fileName: _jsxFileName, lineNumber: 203}}
         
-          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 207}}, ReactDialogStackStyle())
+          , React__default['default'].createElement('style', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 211}}, ReactDialogStackStyle())
           , this.renderStack()
         )
       )
